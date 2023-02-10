@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-02-2023 a las 20:10:07
+-- Tiempo de generación: 11-02-2023 a las 00:00:56
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -53,25 +53,24 @@ INSERT INTO `animals` (`name`, `specie`, `breed`, `age`, `sex`, `neutered`) VALU
 --
 
 CREATE TABLE `users` (
-  `id` int(20) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `role` varchar(50) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `mail` varchar(250) NOT NULL,
-  `telephone` int(15) NOT NULL
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `role` varchar(15) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `mail` varchar(50) NOT NULL,
+  `mobile` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `name`, `lastname`, `mail`, `telephone`) VALUES
-(1, 'androidbeing', 'password01', 'admin', 'Andrea', 'Morales Mata', 'andrea@mail.com', 789564433),
-(2, 'anva', 'password02', 'admin', 'Ani Liseth', 'Valle Banegas', 'anivalle@mail.com', 689560034),
-(3, 'akitayum', 'password03', 'registered', 'Ester', 'Garrido Lopez', 'estergl@mail.com', 694376458),
-(4, 'animallover', 'password04', 'registered', 'Ivan', 'Presa Cantos', 'ivanpc@mail.com', 687974568);
+INSERT INTO `users` (`username`, `password`, `role`, `name`, `lastname`, `mail`, `mobile`) VALUES
+('akitayum', 'password03', 'registered', 'Ester', 'Garrido Perez', 'estergp@mail.com', 734865984),
+('androidbeing', 'password01', 'admin', 'Andrea', 'Morales Mata', 'andrea@mail.com', 645743876),
+('animalseeker', 'passwor04', 'registered', 'Carlos', 'Garcia Balero', 'carlosgb@mail.com', 645873297),
+('anva', 'password02', 'admin', 'Ani Liseth', 'Valle Banegas', 'aniva@mail.com', 634521184);
 
 --
 -- Índices para tablas volcadas
@@ -81,19 +80,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `name`, `lastname`, `
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `telephone` (`telephone`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  ADD PRIMARY KEY (`username`),
+  ADD UNIQUE KEY `phone` (`mobile`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
