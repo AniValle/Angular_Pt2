@@ -12,6 +12,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { HomeComponent } from './components/home/home.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+
+
 
 @NgModule({
   declarations: [
@@ -28,7 +32,9 @@ import { HomeComponent } from './components/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule,
+    MdbCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

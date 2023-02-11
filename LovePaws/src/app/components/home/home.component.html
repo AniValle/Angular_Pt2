@@ -1,4 +1,57 @@
-<h1> Home </h1>
 <div class="container">
-    <p>Sorry, this page is under construction</p>
+  
+<div class="m-0 vh-100 row justify-content-center align-items-center text-center">
+  <div class="col-auto text-center">
+  <h1>WELCOME TO LOVEPAWS!</h1>
+  <h4 *ngIf="loggedIn()">Hello {{user}}</h4>
+  <hr class="hr hr-blurry" />
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p>
+        Until one has loved an animal, a part of one's soul remains unawakened.
+      </p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      Anatole France <cite title="Source Title">Everydaypower</cite>
+    </figcaption>
+  </figure>
+  </div>
+  <mdb-carousel [controls]="true">
+    <mdb-carousel-item>
+      <img
+        src="assets/minina.webp"
+        class="d-block w-100"
+        alt="americanshorthair"
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5 >Minina</h5>
+      </div>
+    </mdb-carousel-item>
+    <mdb-carousel-item>
+      <img
+        src="assets/helpershelter.jpeg"
+        class="d-block w-100"
+        alt="volunteer"
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Caretakers</h5>
+        <p>Join our volunteers, and help us!</p>
+      </div>
+    </mdb-carousel-item>
+    <mdb-carousel-item>
+      <img
+        src="assets/pinky.jpg"
+        class="d-block w-100"
+        alt="germanshepherd"
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Pinky</h5>
+      </div>
+    </mdb-carousel-item>
+  </mdb-carousel>
 </div>
+</div>
+
+  
+
+

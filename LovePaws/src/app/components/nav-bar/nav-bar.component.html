@@ -1,13 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-
-    <a class="navbar-brand" href="#">Love Paws</a>
+    <a class="navbar-brand fs-3 fw-bold " href="/home">Love Paws</a>
+    <a href="/home"><img class="navphoto nav-item" src="assets/navdog.png" alt="navdog"></a>
     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      
       <span class="navbar-toggler-icon"></span>
     </button>
 
       <div class="navbar-collapse collapse" id="navbarColor01" >
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item" >
           <a  routerLink="/home" class="nav-link active"> Home </a>
@@ -15,18 +16,24 @@
         </li>
 
           <li class="nav-item">
-            <a  routerLink="/login" class="nav-link"> Login </a>
+            <a  routerLink="/login" class="nav-link" *ngIf="!loggedIn()"> Login </a>
           </li>
           <li class="nav-item" role="presentation">
-            <a  routerLink="/register" class="nav-link" > Register </a>
+            <a  routerLink="/register" class="nav-link" *ngIf="!loggedIn()"> Register </a>
           </li>
-  
-          <li  class="nav-item" role="presentation">
-            <a routerLink="/presentation" class="nav-link" > Presentation </a>
+          <li class="nav-item dropdown" role="presentation">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About Us</a>
+            <div class="dropdown-menu">
+              <a routerLink="/presentation" class="dropdown-item" > Presentation </a>
+              <div class="dropdown-divider"></div>
+              <a routerLink="/explanation" class="dropdown-item" > Motivation </a>
+            </div>
           </li>
-  
           <li   class="nav-item" role="presentation">
-            <a routerLink="/explanation" class="nav-link" > Explanation </a>
+            <a routerLink="/logout" class="nav-link" *ngIf="loggedIn()"> Animal Residents </a>
+          </li>
+          <li   class="nav-item" role="presentation">
+            <a routerLink="/logout" class="nav-link" *ngIf="loggedIn() && role == 'admin'"> Admin Users </a>
           </li>
 
           <li   class="nav-item" role="presentation">
@@ -34,8 +41,10 @@
           </li>
   
           <li   class="nav-item" role="presentation">
-            <a routerLink="/logout" class="nav-link" > Logout </a>
+            <a routerLink="/logout" class="nav-link" *ngIf="loggedIn()"> Logout </a>
           </li>
+         
+          
 
       </ul>
       </div>
