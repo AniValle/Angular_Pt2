@@ -14,6 +14,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { HomeComponent } from './components/home/home.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+import { ResidentsComponent } from './components/residents/residents.component';
+import { UsersComponent } from './components/users/users.component';
 
 
 
@@ -28,7 +30,9 @@ import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
     NavBarComponent,
     RegisterComponent,
     LogoutComponent,
-    HomeComponent
+    HomeComponent,
+    ResidentsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { HomeComponent } from './components/home/home.component';
+import { ResidentsComponent } from './components/residents/residents.component';
+import { UsersComponent } from './components/users/users.component';
+
 const routes: Routes = [
   {
     path:'',
@@ -16,14 +19,16 @@ const routes: Routes = [
     pathMatch:'full'
   },
   { path: 'navbar',       component: NavBarComponent},
-  { path: 'home',        component: HomeComponent},
+  { path: 'home',         component: HomeComponent},
   { path: 'login',        component: LoginComponent },
   { path: 'register',     component: RegisterComponent },
   { path: 'presentation', component: PresentationComponent },
   { path: 'contact',      component: ContactComponent },
   { path: 'explanation',  component: ExplanationComponent },
+  { path: 'residents',    component: ResidentsComponent },
+  { path: 'users',        component: UsersComponent },
   { path: 'logout',       component: LogoutComponent },
-  {path:'**',   component:PagenotfoundComponent // este path tiene que estar al final
+  { path: '**',           component:PagenotfoundComponent // este path tiene que estar al final
   }
 ];
 
