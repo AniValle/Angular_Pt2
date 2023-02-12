@@ -5,4 +5,17 @@ h1, h2, h3, h4, h5 {
     text-align: center;
 }
 
+form{
+    padding-top: 0%;
+    padding-left: 20%;padding-right: 20%;
+    margin: auto;
+    margin-bottom: 15%;
 
+}
+
+.invalid-input{
+    width:100%;
+    margin-top:.25rem;
+    font-size:.875em;
+    color:#e44c55
+}

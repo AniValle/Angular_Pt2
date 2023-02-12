@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';//per ngModel
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +17,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { ResidentsComponent } from './components/residents/residents.component';
 import { UsersComponent } from './components/users/users.component';
+import { RepitePassDirective } from './directives/repite-pass.directive';
 
 
 
@@ -32,13 +34,16 @@ import { UsersComponent } from './components/users/users.component';
     LogoutComponent,
     HomeComponent,
     ResidentsComponent,
-    UsersComponent
+    UsersComponent,
+    RepitePassDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MdbCarouselModule
+    MdbCarouselModule,
+    FormsModule, //per ngModel
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
