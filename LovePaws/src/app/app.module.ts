@@ -18,7 +18,7 @@ import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { ResidentsComponent } from './components/residents/residents.component';
 import { UsersComponent } from './components/users/users.component';
 import { RepitePassDirective } from './directives/repite-pass.directive';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -43,7 +43,8 @@ import { RepitePassDirective } from './directives/repite-pass.directive';
     NoopAnimationsModule,
     MdbCarouselModule,
     FormsModule, //per ngModel
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

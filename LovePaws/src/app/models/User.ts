@@ -1,17 +1,17 @@
 
 export class User {
 
-    #user!:string;
-    #pass!:string;
-    #rol!:string;
-    #name!:string;
-    #lastname!:string;
-    #mail!:string;
-    #mobile!:number;
+    #user:string|undefined;
+    #pass:string|undefined;
+    #rol:string|undefined;
+    #name:string|undefined;
+    #lastname:string|undefined;
+    #mail:string|undefined;
+    #mobile:number|undefined;
     
 
 
-    constructor (user:string, pass:string, rol:string, name:string, lastname:string, mail: string, mobile:number) {
+    constructor (user?:string, pass?:string, rol?:string, name?:string, lastname?:string, mail?: string, mobile?:number) {
         this.#user = user;
         this.#pass = pass;
         this.#rol = rol;
@@ -21,60 +21,60 @@ export class User {
         this.#mobile = mobile;
     }
 
-    get User () {
-        return this.#user;
+    public get user () {
+        return this.#user!;
     }
 
-    get Pass () {
-        return this.#pass;
+    public get pass () {
+        return this.#pass!;
     }
 
-    get Rol () {
-        return this.#rol;
+    public get rol () {
+        return this.#rol!;
     }
 
-    get Name () {
-        return this.#name;
+    public get name () {
+        return this.#name!;
     }
 
-    get Lastname () {
-        return this.#lastname;
+    public get lastname () {
+        return this.#lastname!;
     }
 
-    get Mail () {
-        return this.#mail;
+    public get mail () {
+        return this.#mail!;
     }
 
-    get Mobile () {
-        return this.#mobile;
+    public get mobile () {
+        return this.#mobile!;
     }
 
     
-    set User(user) {
+    public set user(user:string) {
         this.#user = user;
     }
 
-    set Pass(pass) {
+    public set pass(pass:string) {
         this.#pass = pass;
     }
 
-    set Rol(rol) {
+    public set rol(rol:string) {
         this.#rol = rol;
     }
 
-    set Name(name) {
+    public set name(name:string) {
         this.#name = name;
     }
 
-    set Lastname(lastname) {
+    public set lastname(lastname:string) {
         this.#lastname = lastname;
     }
 
-    set Mail(mail) {
+    public set mail(mail:string) {
         this.#mail = mail;
     }
 
-    set Mobile(mobile) {
+    public set mobile(mobile:number) {
         this.#mobile = mobile;
     }
     

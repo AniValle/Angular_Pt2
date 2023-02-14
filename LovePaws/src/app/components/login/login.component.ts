@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { ServerServiceService } from 'src/app/services/server-service.service';
+import { User } from 'src/app/models/User';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -9,25 +12,54 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  
+  message!:string;
+  user!:User;
+  datos!:string;
+  miformlogin:FormGroup; 
 
-  constructor(public router:Router) {
+  constructor(public router:Router, private myhttp: ServerServiceService) {
+
+    this.message ="";
+    this.user = new User();
+  // ------------------- Form Login ---------------------// 
+    this.miformlogin= new FormGroup({
+ 
+      username:new FormControl('',[
+        Validators.required,
+        Validators.minLength(6),
+       Validators.maxLength(15),
+      ]),
+      pass:new FormControl('',[
+        Validators.required,
+        Validators.minLength(8),
+       Validators.maxLength(10),
+      ])
+    })
   }
 
-  // ------------------- Form Login ---------------------// 
-  datos!:string;
-   miformlogin = new FormGroup({
- 
-     username:new FormControl('',[
-       Validators.required,
-       Validators.minLength(6),
-      Validators.maxLength(15),
-     ]),
-     pass:new FormControl('',[
-       Validators.required,
-       Validators.minLength(8),
-      Validators.maxLength(10),
-     ])
-   })
+  
+
+  testLogin():void{
+
+    this.myhttp.validateUsers(this.miformlogin.value).subscribe(
+      result => {
+        if(result==null){
+          this.message="Creadentials incorrect.";
+        }else{
+          this.user=JSON.parse(JSON.stringify(result));
+          console.log(result);
+          this.router.navigate(['/home']);
+        }
+      }
+    )
+  }
+
+  
+  // validateLogin(usuari: string, password: string):Observable<User>{
+  //   return;
+  // }
+
 
   // ---------------------- Redirects -----------------------//
   /**
@@ -44,8 +76,8 @@ export class LoginComponent {
   // ------------------------- Button ---------------------------//
    submit():void{
     //this.successfulLogin();
-    this.successfulLogin2();
-
+    //this.successfulLogin2();
+      this.testLogin();
       this.datos= `
       Datos ingresados,
       Username:         ${this.miformlogin.value.username}

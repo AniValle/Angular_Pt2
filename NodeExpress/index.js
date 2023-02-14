@@ -1,9 +1,9 @@
 'use strict'
 //importacions i creació de constants per a la seva utiliutzació
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
+const cors = require('cors');
 const mysql = require('mysql');
-const bodyParser=require('body-parser')
+const bodyParser=require('body-parser');
 const app=express()
 //configuració del bodyParser perquè admeti entrades json i
 app.use(bodyParser.urlencoded({extended:false}))
@@ -77,13 +77,12 @@ app.post('/login', function (req, res) {
     var sql = 'SELECT * FROM users WHERE username =? AND password =?'
     connection.query(sql,[username,password],function(error,result){
           console.log("ererererer"+error);
-        if(error==null){
+        if(error){
             res.send('Username and password incorrect');
-          
-       
+            
         }else{ // no hay errores
-            console.log(result);
-            res.send(result[0]);
+            console.log(result[0]);
+            res.json(result[0]);
        }
     });
 });
