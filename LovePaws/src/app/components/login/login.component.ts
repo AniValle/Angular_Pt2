@@ -22,18 +22,19 @@ export class LoginComponent {
 
     this.message ="";
     this.user = new User();
+    
   // ------------------- Form Login ---------------------// 
     this.miformlogin= new FormGroup({
  
-      username:new FormControl('',[
-        Validators.required,
-        Validators.minLength(6),
-       Validators.maxLength(15),
+      username: new FormControl('',[
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(15),
       ]),
-      pass:new FormControl('',[
-        Validators.required,
-        Validators.minLength(8),
-       Validators.maxLength(10),
+      password: new FormControl('',[
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(10),
       ])
     })
   }
@@ -45,9 +46,11 @@ export class LoginComponent {
     this.myhttp.validateUsers(this.miformlogin.value).subscribe(
       result => {
         if(result==null){
-          this.message="Creadentials incorrect.";
+          this.message="Creadentials incorrect";
         }else{
+          
           this.user=JSON.parse(JSON.stringify(result));
+          localStorage.setItem("user", JSON.stringify(result));
           console.log(result);
           this.router.navigate(['/home']);
         }
@@ -81,8 +84,9 @@ export class LoginComponent {
       this.datos= `
       Datos ingresados,
       Username:         ${this.miformlogin.value.username}
-      Password:         ${this.miformlogin.value.pass}`
-        }
+      Password:         ${this.miformlogin.value.password}`
+      }
+
 
   }
 

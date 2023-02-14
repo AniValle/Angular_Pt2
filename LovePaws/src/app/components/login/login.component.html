@@ -30,17 +30,17 @@
         <div class="form-group">
             <label for="" class="form-label mt-4"> Password: </label>
             <div>
-                <input class="form-control" type="password" formControlName="pass" placeholder="Password" ><br>
-                <span class="invalid-input" *ngIf="this.miformlogin.get('pass')?.errors?.['required'] && 
-                             this.miformlogin.get('pass')?.touched">
+                <input class="form-control" type="password" formControlName="password" placeholder="Password" ><br>
+                <span class="invalid-input" *ngIf="this.miformlogin.get('password')?.errors?.['required'] && 
+                             this.miformlogin.get('password')?.touched">
                     Password cannot be empty.
                 </span>
-                <span class="invalid-input" *ngIf="this.miformlogin.get('pass')?.errors?.['minlength'] && 
-                            this.miformlogin.get('pass')?.touched">
+                <span class="invalid-input" *ngIf="this.miformlogin.get('password')?.errors?.['minlength'] && 
+                            this.miformlogin.get('password')?.touched">
                         Password minimum 8 characters.  
                 </span>
-                <span class="invalid-input" *ngIf="this.miformlogin.get('pass')?.errors?.['maxlength'] && 
-                            this.miformlogin.get('pass')?.touched">
+                <span class="invalid-input" *ngIf="this.miformlogin.get('password')?.errors?.['maxlength'] && 
+                            this.miformlogin.get('password')?.touched">
                         Password maximum 10 characters.  
                 </span>
             </div><br>
@@ -52,5 +52,7 @@
         
 
         </fieldset>
+        {{message}}
     </form>
+    
 </div>
