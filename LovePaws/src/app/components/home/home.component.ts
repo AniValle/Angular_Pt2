@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,8 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  user!:string;
+  user!:User;
+  name!:string;
 
   constructor () {}
 
@@ -17,6 +19,8 @@ export class HomeComponent {
    */  
   loggedIn() {
     this.user = JSON.parse(localStorage.getItem("user") || '{}')
+    this.name = `${this.user.name} ${this.user.lastname}`;
     return localStorage.getItem("user") ? true : false;
   }
+
 }
