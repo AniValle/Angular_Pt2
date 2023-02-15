@@ -22,6 +22,9 @@ export class LoginComponent {
 
     this.message ="";
     this.user = new User();
+    if(this.myhttp.userData()){
+      this.router.navigate(['/home']);
+    }
     
   // ------------------- Form Login ---------------------// 
     this.miformlogin= new FormGroup({
@@ -46,22 +49,15 @@ export class LoginComponent {
     this.myhttp.validateUsers(this.miformlogin.value).subscribe(
       result => {
         if(result==null){
-          this.message="Creadentials incorrect";
+          this.message="Creadentials incorrect, try again!";
         }else{
           
           this.user=JSON.parse(JSON.stringify(result));
-          localStorage.setItem("user", JSON.stringify(result));
-          console.log(result);
           this.router.navigate(['/home']);
         }
       }
     )
   }
-
-  
-  // validateLogin(usuari: string, password: string):Observable<User>{
-  //   return;
-  // }
 
 
   // ---------------------- Redirects -----------------------//

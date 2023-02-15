@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { User } from 'src/app/models/User';
+import { ServerServiceService } from 'src/app/services/server-service.service';
 
 @Component({
   selector: 'app-logout',
@@ -11,7 +13,7 @@ export class LogoutComponent {
   user:User = JSON.parse(localStorage.getItem("user") || '{}')
   message!:string;
 
-  constructor () {}
+  constructor (private route: Router, private _http: ServerServiceService) {}
 
   /**
    * Show a message depending on whether the user is logged in or not.
@@ -30,9 +32,7 @@ export class LogoutComponent {
    * Remove user from localstorage
    */
   logout(){
-    if(this.user){
-      localStorage.removeItem("user");
-    }
+    this._http.logout();
+    this.route.navigate(['/login']);
   }
-
 }

@@ -11,6 +11,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { HomeComponent } from './components/home/home.component';
 import { ResidentsComponent } from './components/residents/residents.component';
 import { UsersComponent } from './components/users/users.component';
+import { RoutingGuard } from './guards/routing.guard';
 
 const routes: Routes = [
   {
@@ -25,8 +26,8 @@ const routes: Routes = [
   { path: 'presentation', component: PresentationComponent },
   { path: 'contact',      component: ContactComponent },
   { path: 'explanation',  component: ExplanationComponent },
-  { path: 'residents',    component: ResidentsComponent },
-  { path: 'users',        component: UsersComponent },
+  { path: 'residents',    component: ResidentsComponent, canActivate: [RoutingGuard]},
+  { path: 'users',        component: UsersComponent, canActivate: [RoutingGuard] },
   { path: 'logout',       component: LogoutComponent },
   { path: '**',           component:PagenotfoundComponent // este path tiene que estar al final
   }

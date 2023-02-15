@@ -11,8 +11,14 @@ const app=express();
 var connection = mysql.createConnection({
     host: 'localhost',
     database: 'Animal_shelter',
-     user: 'root',
+    user: 'root',
     password: ''
+});
+connection.connect(function(err) {
+    if (err != null ) {
+       throw err;
+    }
+    console.log('Connected as id ' + connection.threadId);
 });
 
 //configuració del bodyParser perquè admeti entrades json i
@@ -39,20 +45,14 @@ app.post('/login', function (req, res) {
     let password = req.body.password;
 
     // connection
-    connection.connect(function(err) {
-        if (err) {
-            console.error('Error connecting: ' + err.stack);
-            return;
-        }
-        console.log('Connected as id ' + connection.threadId);
-    });
+   
 
     // Consulta parametrizada.
     var sql = 'SELECT * FROM users WHERE username=? and password=?';
     connection.query(sql,[username, password],function(error, result){
         
-        if(error){
-            res.send("Username or password incorrect");
+        if(error!=null){
+            res.status(400).send("Incorrect credentials");
             
         }else{ // no hay errores
             console.log(result[0]);
@@ -60,6 +60,34 @@ app.post('/login', function (req, res) {
         }
     });
 });
+
+/**
+ * Register User
+ */
+app.post('/register', function (req, res) {
+    //recojo usuario
+    let username    = req.body.username;
+    let password    = req.body.pass;
+    let role        = "registered";
+    let name        = req.body.name;
+    let lastname    = req.body.lastname;
+    let mail        = req.body.email;
+    let mobile      = req.body.tel;
+
+    // Consulta parametrizada.
+    var sql = 'INSERT INTO users (username, password, role, name, lastname, mail, mobile) VALUES (?,?,?,?,?,?,?);';
+    connection.query(sql,[username, password, role, name, lastname, mail, mobile],function(error, result){
+        if(error){
+            console.log(req.body);
+            console.log(error);
+            res.status(400).send("The user could not register");
+            
+        }else{ // no hay errores
+            console.log(result[0]);
+            res.json(result[0]);
+        }
+    });
+})
 
 //
 app.listen(3000, ()=>{
