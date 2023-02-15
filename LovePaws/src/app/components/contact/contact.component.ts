@@ -18,14 +18,17 @@ export class ContactComponent {
       Validators.required,
       Validators.pattern("^[^@]+@[^@]+\.[a-zA-Z]{2,}$")
     ]),
-    // comment: new FormControl('',[
-    //   Validators.required,
-    //   Validators.maxLength(30)
-    // ])
+    comment: new FormControl('',[
+      Validators.required,
+      Validators.maxLength(30)
+    ])
   })
+
+  element = false;
 
   // ------------------------- Button ---------------------------//
   submit():void {
+    this.element = true;
     this.message = "We have received your comment, we will contact you shortly"
   }
 

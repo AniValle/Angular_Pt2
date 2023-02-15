@@ -1,7 +1,7 @@
 /* @import '~mdb-angular-ui-kit/assets/scss/mdb.scss'; */
 
 /* You can add global styles to this file, and also import other style files */
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, p {
     text-align: center;
 }
 
