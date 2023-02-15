@@ -65,7 +65,8 @@ export class RegisterComponent {
           this.message = 'Ocurrió un error al intentar guardar los datos';
         }else{
           console.log('from testRegister', result);
-          this.router.navigate(['/login']);
+          this.message = 'Register done.';
+          //this.router.navigate(['/login']);
         }
       },
       (error) => {

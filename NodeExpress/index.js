@@ -14,9 +14,13 @@ var connection = mysql.createConnection({
     user: 'root',
     password: ''
 });
-connection.connect(function(err) {
-    if (err != null ) {
-       throw err;
+
+
+// connection
+connection.connect(function(err){
+    if (err) {
+        console.error('Error connecting:'+ err.stack);
+        return;
     }
     console.log('Connected as id ' + connection.threadId);
 });
@@ -43,9 +47,6 @@ app.post('/login', function (req, res) {
 
     //recojo password
     let password = req.body.password;
-
-    // connection
-   
 
     // Consulta parametrizada.
     var sql = 'SELECT * FROM users WHERE username=? and password=?';
@@ -83,11 +84,15 @@ app.post('/register', function (req, res) {
             res.status(400).send("The user could not register");
             
         }else{ // no hay errores
-            console.log(result[0]);
-            res.json(result[0]);
+            console.log(result);
+            console.log(req.body);
+            // comprobar que el objeto se ha resivido correctamente
+            res.json(req.body);
+
         }
     });
 })
+
 
 //
 app.listen(3000, ()=>{
