@@ -34,7 +34,7 @@ app.use(cors());
 
 
 
-
+//main show if npm is up
 app.get('/', (req,res) => {
     res.send(JSON.stringify('Hello to my web'));
 });
@@ -92,6 +92,23 @@ app.post('/register', function (req, res) {
         }
     });
 })
+
+/**
+ * Animal list
+ */
+
+app.get('/residents', (req,res) => {
+    console.log("We are in animal residents!");
+
+    connection.query("SELECT * FROM animals", (error, results)=>{
+        if (error) {
+            res.status(400).send(null)
+        }else{
+            res.status(200).send(results);
+        }
+    })
+});
+
 
 
 //
