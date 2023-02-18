@@ -33,6 +33,9 @@
             <a routerLink="/residents" class="nav-link" *ngIf="loggedIn()"> Animal Residents </a>
           </li>
           <li   class="nav-item" role="presentation">
+            <a routerLink="/formAnimals" class="nav-link" *ngIf="loggedIn() && role == 'admin'"> Add Animals </a>
+          </li>
+          <li   class="nav-item" role="presentation">
             <a routerLink="/users" class="nav-link" *ngIf="loggedIn() && role == 'admin'"> Admin Users </a>
           </li>
 

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/User';
 import {catchError, map} from 'rxjs/operators';
+import { Animal } from '../models/Animal';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,10 @@ export class ServerServiceService {
 
   registerUser(credentialsUser: User): Observable<User>{
     return this._http.post<User>(this.url+"/register", credentialsUser, {responseType:"json"});
+  }
+
+  registerAnimal(animalData: Animal): Observable<Animal> {
+    return this._http.post<Animal>(this.url+"/registerAnimal", animalData);
   }
   
   logout(){

@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ResidentsComponent } from './components/residents/residents.component';
 import { UsersComponent } from './components/users/users.component';
 import { RoutingGuard } from './guards/routing.guard';
+import { FormAnimalsComponent } from './components/form-animals/form-animals.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'contact',      component: ContactComponent },
   { path: 'explanation',  component: ExplanationComponent },
   { path: 'residents',    component: ResidentsComponent, canActivate: [RoutingGuard]},
+  { path: 'formAnimals',  component: FormAnimalsComponent, canActivate: [RoutingGuard]},
   { path: 'users',        component: UsersComponent, canActivate: [RoutingGuard] },
   { path: 'logout',       component: LogoutComponent },
   { path: '**',           component:PagenotfoundComponent // este path tiene que estar al final

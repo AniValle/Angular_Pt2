@@ -74,8 +74,6 @@ export class LoginComponent {
 
   // ------------------------- Button ---------------------------//
    submit():void{
-    //this.successfulLogin();
-    //this.successfulLogin2();
       this.testLogin();
       this.datos= `
       Datos ingresados,

@@ -19,6 +19,7 @@ import { ResidentsComponent } from './components/residents/residents.component';
 import { UsersComponent } from './components/users/users.component';
 import { RepitePassDirective } from './directives/repite-pass.directive';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormAnimalsComponent } from './components/form-animals/form-animals.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     HomeComponent,
     ResidentsComponent,
     UsersComponent,
-    RepitePassDirective
+    RepitePassDirective,
+    FormAnimalsComponent
   ],
   imports: [
     BrowserModule,

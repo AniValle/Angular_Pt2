@@ -1,0 +1,143 @@
+
+<div class="container" style="margin-top: 2%;">
+    <h1  class="fw-bold"> FORM ANIMALS </h1>
+    <br>
+    <br>
+    <div>
+        <form [formGroup]="formAnimals" (ngSubmit)="submit()" >
+        <fieldset>
+
+            <!-- ------------------------- Name --------------------------- -->
+            <div class="form-group" >
+                <label class="form-label mt-4"> Name: </label>
+                <div>
+                    <input class="form-control" type="text" formControlName="name" placeholder="Name">
+                    <span class="invalid-input" *ngIf="this.formAnimals.get('name')?.errors?.['required'] && 
+                                 this.formAnimals.get('name')?.touched">
+                            Name cannot be empty.
+                    </span>
+                    <span  class="invalid-input" *ngIf="this.formAnimals.get('name')?.errors?.['minlength'] && 
+                                this.formAnimals.get('name')?.touched">
+                            Minimum name length is 4 characters
+                    </span>
+                    <span  class="invalid-input" *ngIf="this.formAnimals.get('name')?.errors?.['maxlength'] && 
+                                this.formAnimals.get('name')?.touched">
+                            Maximum name length is 15 characters
+                    </span>
+                    <span  class="invalid-input" *ngIf="this.formAnimals.get('name')?.errors?.['pattern'] && 
+                                this.formAnimals.get('name')?.touched">
+                            Name only allows letters.
+                    </span>
+                </div>
+            </div>
+
+            <!-- ------------------------- Specie --------------------------- -->
+            <div class="form-group" >
+                <label class="form-label mt-4"> Specie: </label>
+                <div>
+                    <input class="form-control" type="text" formControlName="specie" placeholder="Specie">
+                    <span class="invalid-input" *ngIf="this.formAnimals.get('specie')?.errors?.['required'] && 
+                        this.formAnimals.get('specie')?.touched">
+                        Specie cannot be empty.
+                    </span>
+                    <span  class="invalid-input" *ngIf="this.formAnimals.get('specie')?.errors?.['minlength'] && 
+                                this.formAnimals.get('specie')?.touched">
+                            Minimum specie length is 3 characters
+                    </span>
+                    <span  class="invalid-input" *ngIf="this.formAnimals.get('specie')?.errors?.['maxlength'] && 
+                                this.formAnimals.get('specie')?.touched">
+                            Maximum specie length is 15 characters
+                    </span>
+                    <span  class="invalid-input" *ngIf="this.formAnimals.get('specie')?.errors?.['pattern'] && 
+                                this.formAnimals.get('specie')?.touched">
+                            Only allows letters.
+                    </span>
+                </div>
+            </div>
+
+            <!-- ------------------------- Breed --------------------------- -->
+            <div class="form-group" >
+                <label class="form-label mt-4"> Breed: </label>
+                <input class="form-control" type="text" formControlName="breed" placeholder="Breed">
+                <span class="invalid-input" *ngIf="this.formAnimals.get('breed')?.errors?.['required'] && 
+                    this.formAnimals.get('breed')?.touched">
+                    Breed cannot be empty.
+                </span>
+                <span  class="invalid-input" *ngIf="this.formAnimals.get('breed')?.errors?.['minlength'] && 
+                            this.formAnimals.get('breed')?.touched">
+                        Minimum breed length is 5 characters
+                </span>
+                <span  class="invalid-input" *ngIf="this.formAnimals.get('breed')?.errors?.['maxlength'] && 
+                            this.formAnimals.get('breed')?.touched">
+                        Maximum breed length is 30 characters
+                </span>
+                <span  class="invalid-input" *ngIf="this.formAnimals.get('breed')?.errors?.['pattern'] && 
+                            this.formAnimals.get('breed')?.touched">
+                        Only allows letters.
+                </span>
+            </div>
+
+            <!-- ------------------------- Age ----------------------------- -->
+            <div class="form-group" >
+                <label class="form-label mt-4"> Age: </label>
+                <input class="form-control" type="text" formControlName="age" placeholder="Age">
+                <span class="invalid-input" *ngIf="this.formAnimals.get('age')?.errors?.['required'] && 
+                    this.formAnimals.get('age')?.touched">
+                    Age cannot be empty.
+                </span>
+                <span  class="invalid-input" *ngIf="this.formAnimals.get('age')?.errors?.['maxlength'] && 
+                            this.formAnimals.get('age')?.touched">
+                        Maximum age length is 2 characters.
+                </span>
+                <span  class="invalid-input" *ngIf="this.formAnimals.get('age')?.errors?.['pattern'] && 
+                            this.formAnimals.get('age')?.touched">
+                        Only numbers are allowed.
+                </span>
+            </div>
+
+            <!-- ------------------------- Sex ----------------------------- -->
+            <div class="form-group" >
+                <label class="form-label mt-4"> Gender: </label>
+                <input class="form-control" type="text" formControlName="sex" placeholder="Gender">
+                <span class="invalid-input" *ngIf="this.formAnimals.get('sex')?.errors?.['required'] && 
+                    this.formAnimals.get('sex')?.touched">
+                    Gender cannot be empty.
+                </span>
+                <span  class="invalid-input" *ngIf="this.formAnimals.get('sex')?.errors?.['maxlength'] && 
+                            this.formAnimals.get('sex')?.touched">
+                        Maximum length 1 characters
+                </span>
+                <span  class="invalid-input" *ngIf="this.formAnimals.get('sex')?.errors?.['pattern'] && 
+                            this.formAnimals.get('sex')?.touched">
+                            If the gender is female <b>F</b>, If the gender is male <b>M</b>
+                </span>
+            </div>
+
+            <!-- ------------------------- Neutered ------------------------ -->
+            <div class="form-group" >
+                <label class="form-label mt-4"> Neutered: </label>
+                <input class="form-control" type="text" formControlName="neutered" placeholder="Neutered">
+                <span class="invalid-input" *ngIf="this.formAnimals.get('neutered')?.errors?.['required'] && 
+                    this.formAnimals.get('neutered')?.touched">
+                    Neutered cannot be empty.
+                </span>
+                <span  class="invalid-input" *ngIf="this.formAnimals.get('neutered')?.errors?.['maxlength'] && 
+                            this.formAnimals.get('neutered')?.touched">
+                    Maximum length 1 characters
+                </span>
+                <span  class="invalid-input" *ngIf="this.formAnimals.get('neutered')?.errors?.['pattern'] && 
+                            this.formAnimals.get('neutered')?.touched">
+                    If he is neutered put the letter <b>Y</b> if not the letter <b>N</b>
+                    
+                </span>
+            </div>
+
+            <!-- ----------------------------- Button ----------------------------- -->
+            <br>
+            <button class="btn btn-primary" type="submit" [disabled]="formAnimals.invalid"> Add Animal </button>
+
+        </fieldset>
+        </form>
+        
+    </div>
+</div>

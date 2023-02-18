@@ -94,6 +94,36 @@ app.post('/register', function (req, res) {
 })
 
 /**
+ * Register Animals
+ */
+app.post('/registerAnimal', function (req, res){
+    //recoger datos
+    let name = req.body.name;
+    let specie = req.body.specie;
+    let breed = req.body.breed;
+    let age = req.body.age;
+    let sex = req.body.sex;
+    let neutered = req.body.neutered;
+
+    // Consulta parametrizada.
+    var sql = 'INSERT INTO animals (name, specie, breed, age, sex, neutered) VALUES (?,?,?,?,?,?);';
+    connection.query(sql,[name,specie,breed,age,sex,neutered],function(error,result){
+        if(error){
+            console.log(req.body);
+            console.log(error);
+            res.status(400).send("The animal could not register");
+        
+        }else{ // no hay errores
+            console.log(result);
+            console.log(req.body);
+            // comprobar que el objeto se ha resivido correctamente
+            res.json(req.body);
+        }
+    })
+
+})
+
+/**
  * Animal list
  */
 
