@@ -26,7 +26,7 @@ export class LoginComponent {
       this.router.navigate(['/home']);
     }
     
-  // ------------------- Form Login ---------------------// 
+    // ------------------- Form Login ---------------------// 
     this.miformlogin= new FormGroup({
  
       username: new FormControl('',[
