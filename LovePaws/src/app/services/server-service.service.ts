@@ -32,7 +32,7 @@ export class ServerServiceService {
         console.log(JSON.stringify(res));
 
         if(res!=null){
-          const user:User=new User(res.user ,res.password, res.rol, res.name, res.lastname, res.mail, res.mobile);
+          const user:User=new User(res.user ,res.password, res.role, res.name, res.lastname, res.mail, res.mobile);
           console.log("Objecte Usuari");
           console.log(user);
           

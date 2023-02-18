@@ -3,7 +3,7 @@ export class User {
 
     #user:string|undefined;
     #password:string|undefined;
-    #rol:string|undefined;
+    #role:string|undefined;
     #name:string|undefined;
     #lastname:string|undefined;
     #mail:string|undefined;
@@ -11,10 +11,10 @@ export class User {
     
 
 
-    constructor (user?:string, password?:string, rol?:string, name?:string, lastname?:string, mail?: string, mobile?:number) {
+    constructor (user?:string, password?:string, role?:string, name?:string, lastname?:string, mail?: string, mobile?:number) {
         this.#user = user;
         this.#password = password;
-        this.#rol = rol;
+        this.#role = role;
         this.#name = name;
         this.#lastname = lastname;
         this.#mail = mail;
@@ -29,8 +29,8 @@ export class User {
         return this.#password!;
     }
 
-    public get rol () {
-        return this.#rol!;
+    public get role () {
+        return this.#role!;
     }
 
     public get name () {
@@ -58,8 +58,8 @@ export class User {
         this.#password = password;
     }
 
-    public set rol(rol:string) {
-        this.#rol = rol;
+    public set role(role:string) {
+        this.#role = role;
     }
 
     public set name(name:string) {
@@ -82,7 +82,7 @@ export class User {
         return {
         user: this.#user,
         password: this.#password,
-        rol: this.#rol,
+        role: this.#role,
         name: this.#name,
         lastname: this.#lastname,
         mail: this.#mail,
