@@ -93,6 +93,10 @@
                             this.formAnimals.get('age')?.touched">
                         Only numbers are allowed.
                 </span>
+                <span  class="invalid-input" *ngIf="this.formAnimals.get('age')?.errors?.['max'] && 
+                        this.formAnimals.get('age')?.touched">
+                        No animals age more than 30 years.
+                </span>
             </div>
 
             <!-- ------------------------- Sex ----------------------------- -->

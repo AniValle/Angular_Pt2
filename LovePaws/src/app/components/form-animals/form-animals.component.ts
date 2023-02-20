@@ -41,7 +41,8 @@ export class FormAnimalsComponent {
       age: new FormControl('', [
         Validators.required,
         Validators.maxLength(2),
-        Validators.pattern('^[0-9]+$')
+        Validators.pattern('^[0-9]+$'),
+        Validators.max(30)
       ]),
       sex: new FormControl('',[
         Validators.required,
@@ -64,7 +65,7 @@ export class FormAnimalsComponent {
     this.myhttp.registerAnimal(this.formAnimals.value).subscribe(
       (result: Animal) => {
         if (result == null){
-          this.message = 'Ocurrio un Error al intentar guardar los datos';
+          this.message = 'Error occurred, try again';
         }else{
           console.log('from registerAnimalDb', result);
           this.message = 'Register done!';          

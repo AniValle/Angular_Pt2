@@ -124,7 +124,7 @@ app.post('/registerAnimal', function (req, res){
 })
 
 /**
- * Show User list
+ * Show User list(funciona)
  */
 
 app.get('/users', (req,res) => {
@@ -140,7 +140,7 @@ app.get('/users', (req,res) => {
 });
 
 /**
- * Show Animal list
+ * Show Animal list(funciona)
  */
 
 app.get('/residents', (req,res) => {
@@ -156,26 +156,47 @@ app.get('/residents', (req,res) => {
 });
 
 /**
- * Update animal
+ * Update animal (no funciona)
  */
 app.put('/update-animal', function (req, res) {
- 
     
+    let id = req.body.id;
+    let name = req.body.name;
+    let specie = req.body.specie;
+    let breed = req.body.breed;
+    let age = req.body.age;
+    let sex = req.body.sex;
+    let neutered = req.body.neutered;
+
+    var sql = 'UPDATE animals SET name=?, specie=?, breed=?, age=?, sex=?, neutered=? WHERE id=?';
+    connection.query(sql,[name,specie,breed,age,sex,neutered, id],function(error,result){
+        if(error!=null){
+            console.log(req.body);
+            console.log(error);
+            res.status(400).send("The animal could not be updated");
+        
+        }else{ // no hay errores
+            console.log(result);
+            console.log(req.body);
+            // comprobar que el objeto se ha resivido correctamente
+            res.json(req.body);
+        }
+    })
 });
 
 /**
- * Delete animal from the list
+ * Delete animal from the list (funciona)
  */
 app.delete('/delete-animal', function (req, res) {
  
-    let animal_id = req.body.animal_id;
+    let animal_id = req.body.id;
  
     if (!animal_id) {
         return res.status(400).send({ error: true, message: 'Please provide animal_id' });
     }
     connection.query('DELETE FROM animals WHERE id = ?', [animal_id], function (error, results, fields) {
         if (error) throw error;
-        return res.send({ error: false, data: results, message: 'Animal has been updated successfully.' });
+        return res.send({ error: false, data: results, message: 'Animal has been deleted successfully.' });
     });
 });
 
