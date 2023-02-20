@@ -1,7 +1,7 @@
 
 export class Animal {
  
-
+    #_id!:number;
     #name!:string;
     #specie!:string;
     #breed!:string;
@@ -11,8 +11,9 @@ export class Animal {
     
 
 
-    constructor (name:string, specie: string, breed: string, age: number, sex: string, neutered: string ) {
-    
+    constructor (id: number, name:string, specie: string, breed: string, age: number, sex: string, neutered: string ) {
+        
+        this.#_id = id;
         this.#name = name;
         this.#specie = specie;
         this.#breed = breed;
@@ -21,6 +22,9 @@ export class Animal {
         this.#neutered = neutered;
     }
 
+    get id () {
+        return this.#_id;
+    }
 
     get name () {
         return this.#name;
@@ -46,7 +50,9 @@ export class Animal {
         return this.#neutered;
     }
 
-    
+    set id (id) {
+        this.#_id = id
+    }
 
     set name(name) {
         this.#name = name;
@@ -74,6 +80,7 @@ export class Animal {
     
     getObject () {
         return {
+        id: this.#_id,
         name: this.#name,
         specie: this.#specie,
         breed: this.#breed,

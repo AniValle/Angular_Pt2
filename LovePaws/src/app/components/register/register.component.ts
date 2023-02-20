@@ -15,6 +15,7 @@ export class RegisterComponent {
   datos!:string;
   miform!:FormGroup;
   message!:string;
+  element = false;
 
   constructor (public router:Router, private myhttp: ServerServiceService) {
     // Validations of the registration form
@@ -62,8 +63,10 @@ export class RegisterComponent {
     this.myhttp.registerUser(this.miform.value).subscribe(
       (result: User) => {
         if(result == null){
+          this.element = true;
           this.message = 'Ocurrió un error al intentar guardar los datos';
         }else{
+          this.element = true;
           console.log('from testRegister', result);
           this.message = 'Register done.';
         }

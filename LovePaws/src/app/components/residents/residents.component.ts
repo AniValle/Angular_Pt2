@@ -27,6 +27,17 @@ export class ResidentsComponent implements OnInit{
     });
   }
 
+  /**
+   * Delete animal 
+   */
+  delete(id:any, i:any) {
+    //console.log(id);
+    if(window.confirm('Do you want to go ahead?')) {
+      this.myhttp.deleteAnimal(id).subscribe((res) => {
+        this.Animals.splice(i, 1);
+      })
+    }
+  }
 
 
   sendFormAdd(): void{

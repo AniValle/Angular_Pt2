@@ -35,8 +35,9 @@
                       <td>{{animal.age}}</td>
                       <td>{{animal.sex | animalpipes: 'sex'}}</td>
                       <td>{{animal.neutered | animalpipes : 'neutered'}}</td>
-                      <td *ngIf="role == 'admin'">
-
+                      <td *ngIf="role == 'admin'" class="text-center">
+                        <button class="btn btn-sm btn-primary" routerLink="/edit-animal/{{animal.id}}">Edit</button>
+                        <button class="btn btn-sm btn-danger">Delete</button>
                       </td>
                     </tr>
                   </tbody>
@@ -45,7 +46,7 @@
       </div>
       <br>
 
-    <form (ngSubmit)="sendFormAdd()">
+    <form (ngSubmit)="sendFormAdd()" class="text-center">
         <button type="submit" class="btn btn-primary" > Add Animals </button>
     </form>
 </div>

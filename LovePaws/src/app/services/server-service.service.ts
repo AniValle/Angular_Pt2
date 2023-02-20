@@ -47,6 +47,10 @@ export class ServerServiceService {
     );
   }
 
+  getUsers(): Observable<User>{
+    return this._http.get<User>(this.url+"/users",  {responseType: "json" })
+  }
+
   registerUser(credentialsUser: User): Observable<User>{
     return this._http.post<User>(this.url+"/register", credentialsUser, {responseType:"json"});
   }

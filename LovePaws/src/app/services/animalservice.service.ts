@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Animal } from '../models/Animal';
 
 
@@ -19,7 +19,14 @@ export class AnimalserviceService {
 
   }
 
+  // Delete
+  deleteAnimal(id:any): Observable<any> {
+
+    return this._http.delete<Animal>(this.url + "/delete-animal", id)
+  }
+
   registerAnimal(animalData: Animal): Observable<Animal> {
     return this._http.post<Animal>(this.url+"/registerAnimal", animalData);
   }
+
 }

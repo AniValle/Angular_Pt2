@@ -17,9 +17,10 @@ export class LoginComponent {
   user!:User;
   datos!:string;
   miformlogin:FormGroup; 
+  element = false;
 
   constructor(public router:Router, private myhttp: ServerServiceService) {
-
+    
     this.message ="";
     this.user = new User();
     if(this.myhttp.userData()){
@@ -49,6 +50,7 @@ export class LoginComponent {
     this.myhttp.validateUsers(this.miformlogin.value).subscribe(
       result => {
         if(result==null){
+          this.element = true;
           this.message="Creadentials incorrect, try again!";
         }else{
           

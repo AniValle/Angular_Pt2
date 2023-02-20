@@ -21,6 +21,7 @@ import { RepitePassDirective } from './directives/repite-pass.directive';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormAnimalsComponent } from './components/form-animals/form-animals.component';
 import { AnimalpipesPipe } from './pipes/animalpipes.pipe';
+import { UserpipesPipe } from './pipes/userpipes.pipe';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { AnimalpipesPipe } from './pipes/animalpipes.pipe';
     UsersComponent,
     RepitePassDirective,
     FormAnimalsComponent,
-    AnimalpipesPipe
+    AnimalpipesPipe,
+    UserpipesPipe
   ],
   imports: [
     BrowserModule,
