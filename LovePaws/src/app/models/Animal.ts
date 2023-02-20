@@ -22,53 +22,53 @@ export class Animal {
     }
 
 
-    get Name () {
+    get name () {
         return this.#name;
     }
 
-    get Specie () {
+    get specie () {
         return this.#specie;
     }
 
-    get Breed () {
+    get breed () {
         return this.#breed;
     }
 
-    get Age () {
+    get age () {
         return this.#age;
     }
 
-    get Sex () {
+    get sex () {
         return this.#sex;
     }
 
-    get Neutered () {
+    get neutered () {
         return this.#neutered;
     }
 
     
 
-    set Name(name) {
+    set name(name) {
         this.#name = name;
     }
 
-    set Specie(specie) {
+    set specie(specie) {
         this.#specie = specie;
     }
 
-    set Breed(breed) {
+    set breed(breed) {
         this.#breed = breed;
     }
 
-    set Age(age) {
+    set age(age) {
         this.#age = age;
     }
 
-    set Sex(sex) {
+    set sex(sex) {
         this.#sex = sex;
     }
 
-    set Neutered(neutered) {
+    set neutered(neutered) {
         this.#neutered = neutered;
     }
     

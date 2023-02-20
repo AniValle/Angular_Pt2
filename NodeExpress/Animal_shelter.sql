@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-02-2023 a las 23:37:54
+-- Tiempo de generación: 20-02-2023 a las 18:06:56
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `animals` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `specie` varchar(50) NOT NULL,
   `breed` varchar(50) NOT NULL,
@@ -40,11 +41,11 @@ CREATE TABLE `animals` (
 -- Volcado de datos para la tabla `animals`
 --
 
-INSERT INTO `animals` (`name`, `specie`, `breed`, `age`, `sex`, `neutered`) VALUES
-('Bobby', 'Dog', 'Belgian Malinois', 3, 'M', 'N'),
-('Lili', 'Cat', 'Bengal', 8, 'F', 'Y'),
-('Pinky', 'Dog', 'German Shepherd', 8, 'M', 'N'),
-('Minina', 'Cat', 'American Shorthair', 4, 'F', 'N');
+INSERT INTO `animals` (`id`, `name`, `specie`, `breed`, `age`, `sex`, `neutered`) VALUES
+(1, 'Bobby', 'Dog', 'Belgian Malinois', 3, 'M', 'N'),
+(2, 'Lili', 'Cat', 'Bengal', 8, 'F', 'Y'),
+(3, 'Pinky', 'Dog', 'German Shepherd', 8, 'M', 'N'),
+(4, 'Minina', 'Cat', 'American Shorthair', 4, 'F', 'N');
 
 -- --------------------------------------------------------
 
@@ -77,11 +78,27 @@ INSERT INTO `users` (`username`, `password`, `role`, `name`, `lastname`, `mail`,
 --
 
 --
+-- Indices de la tabla `animals`
+--
+ALTER TABLE `animals`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`),
   ADD UNIQUE KEY `phone` (`mobile`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `animals`
+--
+ALTER TABLE `animals`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

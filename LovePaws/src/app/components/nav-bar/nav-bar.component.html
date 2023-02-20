@@ -21,6 +21,13 @@
           <li class="nav-item" role="presentation">
             <a  routerLink="/register" class="nav-link" *ngIf="!loggedIn()"> Register </a>
           </li>
+          
+          <li   class="nav-item" role="presentation">
+            <a routerLink="/residents" class="nav-link" *ngIf="loggedIn()"> Animal Residents </a>
+          </li>
+          <li   class="nav-item" role="presentation">
+            <a routerLink="/users" class="nav-link" *ngIf="loggedIn() && role == 'admin'"> Admin Users </a>
+          </li>
           <li class="nav-item dropdown" role="presentation">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About Us</a>
             <div class="dropdown-menu">
@@ -28,15 +35,6 @@
               <div class="dropdown-divider"></div>
               <a routerLink="/explanation" class="dropdown-item" > Motivation </a>
             </div>
-          </li>
-          <li   class="nav-item" role="presentation">
-            <a routerLink="/residents" class="nav-link" *ngIf="loggedIn()"> Animal Residents </a>
-          </li>
-          <li   class="nav-item" role="presentation">
-            <a routerLink="/formAnimals" class="nav-link" *ngIf="loggedIn() && role == 'admin'"> Add Animals </a>
-          </li>
-          <li   class="nav-item" role="presentation">
-            <a routerLink="/users" class="nav-link" *ngIf="loggedIn() && role == 'admin'"> Admin Users </a>
           </li>
 
           <li   class="nav-item" role="presentation">

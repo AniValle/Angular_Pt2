@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Animal } from 'src/app/models/Animal';
-import { ServerServiceService } from 'src/app/services/server-service.service';
+import { AnimalserviceService } from 'src/app/services/animalservice.service';
 
 @Component({
   selector: 'app-form-animals',
@@ -14,7 +14,7 @@ export class FormAnimalsComponent {
   formAnimals!:FormGroup;
   message!:string;
 
-  constructor(public router:Router, private myhttp: ServerServiceService){
+  constructor(public router:Router, private myhttp: AnimalserviceService){
   // Validations of the formAnimals
     this.formAnimals = new FormGroup({
 

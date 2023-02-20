@@ -66,7 +66,6 @@ export class RegisterComponent {
         }else{
           console.log('from testRegister', result);
           this.message = 'Register done.';
-          //this.router.navigate(['/login']);
         }
       },
       (error) => {

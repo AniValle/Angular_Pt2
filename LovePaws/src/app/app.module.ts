@@ -20,6 +20,7 @@ import { UsersComponent } from './components/users/users.component';
 import { RepitePassDirective } from './directives/repite-pass.directive';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormAnimalsComponent } from './components/form-animals/form-animals.component';
+import { AnimalpipesPipe } from './pipes/animalpipes.pipe';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { FormAnimalsComponent } from './components/form-animals/form-animals.com
     ResidentsComponent,
     UsersComponent,
     RepitePassDirective,
-    FormAnimalsComponent
+    FormAnimalsComponent,
+    AnimalpipesPipe
   ],
   imports: [
     BrowserModule,

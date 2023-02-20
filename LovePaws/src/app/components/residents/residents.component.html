@@ -1,8 +1,52 @@
 <div class="container" style="margin-top: 2%;">
     <h1  class="fw-bold"> ANIMAL RESIDENTS </h1>
-    <p>Sorry, this page is under construction</p>
+    <br>
+    <br>
+      <div class="table-responsive">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-image table-hover">
+                  <thead>
+                    <tr class="table-primary">
+                      <th scope="col">Id</th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Specie</th>
+                      <th scope="col">Breed</th>
+                      <th scope="col">Age</th>
+                      <th scope="col">Sex</th>
+                      <th scope="col">Neutered</th>
+                      <th *ngIf="role == 'admin'" scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let animal of Animals; let i = index">
+                      <th scope="row">{{animal.id}}</th>
+                      <td class="w-25">
+                          <a href="assets/{{animal.name}}-{{animal.breed}}.jpg" target="_parent" onerror="this.onerror=null; this.src='assets/butterfly.jpg'">
+                          <img 
+                          style="width: 100px; height: 100px" onerror="this.onerror=null; this.src='assets/butterfly.jpg'" src="assets/{{animal.name}}-{{animal.breed}}.jpg" 
+                          class="img-fluid img-thumbnail rounded-circle" alt="{{animal.name}}">
+                          </a>
+                      </td>
+                      <td>{{animal.name | titlecase}}</td>
+                      <td>{{animal.specie | titlecase}}</td>
+                      <td>{{animal.breed | titlecase}}</td>
+                      <td>{{animal.age}}</td>
+                      <td>{{animal.sex | animalpipes: 'sex'}}</td>
+                      <td>{{animal.neutered | animalpipes : 'neutered'}}</td>
+                      <td *ngIf="role == 'admin'">
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>   
+            </div>
+      </div>
+      <br>
 
     <form (ngSubmit)="sendFormAdd()">
         <button type="submit" class="btn btn-primary" > Add Animals </button>
     </form>
 </div>
+  </div>
