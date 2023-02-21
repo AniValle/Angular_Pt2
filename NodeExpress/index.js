@@ -5,6 +5,8 @@ var cors = require('cors');
 var mysql = require('mysql');
 const bodyParser=require('body-parser');
 const app=express();
+//carrega del paquet jsonwebtoken
+const jwt = require('jsonwebtoken');
 
 // MYSQL
 

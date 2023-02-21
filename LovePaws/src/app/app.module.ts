@@ -18,10 +18,11 @@ import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { ResidentsComponent } from './components/residents/residents.component';
 import { UsersComponent } from './components/users/users.component';
 import { RepitePassDirective } from './directives/repite-pass.directive';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormAnimalsComponent } from './components/form-animals/form-animals.component';
 import { AnimalpipesPipe } from './pipes/animalpipes.pipe';
 import { UserpipesPipe } from './pipes/userpipes.pipe';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 
 @NgModule({
@@ -52,7 +53,11 @@ import { UserpipesPipe } from './pipes/userpipes.pipe';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
