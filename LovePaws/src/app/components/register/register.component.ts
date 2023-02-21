@@ -64,15 +64,19 @@ export class RegisterComponent {
       (result: User) => {
         if(result == null){
           this.element = true;
-          this.message = 'Ocurrió un error al intentar guardar los datos';
+          this.message = 'An error occurred while trying to save the data';
         }else{
           this.element = true;
           console.log('from testRegister', result);
           this.message = 'Register done.';
+          this.element = true;
         }
       },
       (error) => {
         console.log('error from register', error)
+        this.message = 'An error occurred while trying to save the data';
+        this.element = true;
+
       }
     )
     
@@ -80,19 +84,8 @@ export class RegisterComponent {
 
   // ------------------------- Button ---------------------------//
   submit():void {
-
     this.testRegister();
 
-    // console.log(this.miform.value);
-    // this.datos= `
-    // username:     ${this.miform.value.username}
-    // pass:         ${this.miform.value.pass}
-    // confirm_pass: ${this.miform.value.confirm_pass}
-    // name:         ${this.miform.value.name}
-    // lastname:     ${this.miform.value.lastname}
-    // email:        ${this.miform.value.email}
-    // tel:          ${this.miform.value.tel}
-    // `
   }
 
 }

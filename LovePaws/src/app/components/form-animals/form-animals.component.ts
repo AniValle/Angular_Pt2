@@ -13,6 +13,7 @@ export class FormAnimalsComponent {
   
   formAnimals!:FormGroup;
   message!:string;
+  element = false;
 
   constructor(public router:Router, private myhttp: AnimalserviceService){
   // Validations of the formAnimals
@@ -47,12 +48,12 @@ export class FormAnimalsComponent {
       sex: new FormControl('',[
         Validators.required,
         Validators.maxLength(1),
-        Validators.pattern('F|M')
+        Validators.pattern('F|M|f|m')
       ]),
       neutered: new FormControl('',[
         Validators.required,
         Validators.maxLength(1),
-        Validators.pattern('N|Y')
+        Validators.pattern('N|Y|n|y')
       ])
     })
   }
@@ -68,7 +69,8 @@ export class FormAnimalsComponent {
           this.message = 'Error occurred, try again';
         }else{
           console.log('from registerAnimalDb', result);
-          this.message = 'Register done!';          
+          this.message = 'Register done!';
+          this.element = true;         
         }
       },
       (error) => {
@@ -76,6 +78,14 @@ export class FormAnimalsComponent {
       }
         
     )
+  }
+
+  // ---------------------- Redirects -----------------------//
+  /**
+   *  This function redirects to the 'resident' page
+   */
+  redirects(): void{
+    this.router.navigateByUrl('/residents')
   }
   
   /**
