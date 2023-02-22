@@ -3,7 +3,7 @@
     <h1  class="fw-bold"> FORM ANIMALS </h1>
     <br>
     <br>
-    <div>
+    <div *ngIf="role == 'admin'">
         <form [formGroup]="formAnimals" (ngSubmit)="submit()" >
         <fieldset>
 
@@ -138,27 +138,25 @@
 
             <!-- ----------------------------- Button ----------------------------- -->
             <br>
-            <button class="btn btn-primary" type="submit" [disabled]="formAnimals.invalid" [disabled]="message == 'Register done!'"> Add Animal </button>
+            <button class="btn btn-primary" type="submit" [disabled]="formAnimals.invalid || message == 'Register done!'"> Add Animal </button>
 
-            <div *ngIf="element == true" id="toasts" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                  <strong class="me-auto">Love Paws</strong>
-                  <small>Ani & Andrea</small>
-                    <button  type="submit" (click)="redirects()" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="toast-body">
-                    {{message}}
-                </div>
-            </div>
+            
             
 
         </fieldset>
         </form>
-
-
         
-        
+    </div>
+    <div *ngIf="element == true" id="toasts" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Love Paws</strong>
+          <small>Ani & Andrea</small>
+            <button  type="submit" (click)="redirects()" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="toast-body">
+            {{message}}
+        </div>
     </div>
 </div>

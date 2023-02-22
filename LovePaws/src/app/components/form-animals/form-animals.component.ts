@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Animal } from 'src/app/models/Animal';
+import { User } from 'src/app/models/User';
 import { AnimalserviceService } from 'src/app/services/animalservice.service';
 
 @Component({
@@ -9,11 +10,13 @@ import { AnimalserviceService } from 'src/app/services/animalservice.service';
   templateUrl: './form-animals.component.html',
   styleUrls: ['./form-animals.component.css']
 })
-export class FormAnimalsComponent {
+export class FormAnimalsComponent implements OnInit{
   
   formAnimals!:FormGroup;
   message!:string;
   element = false;
+  user!:User;
+  role!:string;
 
   constructor(public router:Router, private myhttp: AnimalserviceService){
   // Validations of the formAnimals
@@ -56,6 +59,14 @@ export class FormAnimalsComponent {
         Validators.pattern('N|Y|n|y')
       ])
     })
+  }
+  ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user") || '{}');
+    this.role = `${this.user.role}`;
+    if (this.role !== 'admin'){
+      this.element = true;
+      this.message = "You must be admin to access this page ;)";
+    }
   }
 
   /**

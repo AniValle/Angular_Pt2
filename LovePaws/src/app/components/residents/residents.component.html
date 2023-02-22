@@ -23,7 +23,7 @@
                     <tr *ngFor="let animal of Animals; let i = index">
                       <th scope="row">{{animal.id}}</th>
                       <td class="w-25">
-                          <a href="assets/{{animal.name}}-{{animal.breed}}.jpg" target="_parent" onerror="this.onerror=null; this.src='assets/butterfly.jpg'">
+                          <a  target="_parent" onerror="this.onerror=null; this.href='assets/butterfly.jpg';" href="assets/{{animal.name}}-{{animal.breed}}.jpg">
                           <img 
                           style="width: 100px; height: 100px" onerror="this.onerror=null; this.src='assets/butterfly.jpg'" src="assets/{{animal.name}}-{{animal.breed}}.jpg" 
                           class="img-fluid img-thumbnail rounded-circle" alt="{{animal.name}}">
@@ -46,7 +46,7 @@
       </div>
       <br>
 
-    <form (ngSubmit)="sendFormAdd()" class="text-center">
+    <form *ngIf="role == 'admin'"(ngSubmit)="sendFormAdd()" class="text-center">
         <button type="submit" class="btn btn-primary" > Add Animals </button>
     </form>
 </div>

@@ -154,7 +154,7 @@ app.post('/registerAnimal', authenticateJWT, function (req, res){
         }else{ // no hay errores
             console.log(result);
             console.log(req.body);
-            // comprobar que el objeto se ha resivido correctamente
+            // comprobar que el objeto se ha recibido correctamente
             res.json(req.body);
         }
     })
@@ -223,7 +223,7 @@ app.put('/update-animal',authenticateJWT, function (req, res) {
         }else{ // no hay errores
             console.log(result);
             console.log(req.body);
-            // comprobar que el objeto se ha resivido correctamente
+            // comprobar que el objeto se ha recibido correctamente
             res.json(req.body);
         }
     })

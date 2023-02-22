@@ -13,6 +13,8 @@ export class UsersComponent  implements OnInit{
   Users:any = [];
   user!:User;
   role!:string;
+  message!:string;
+  element = false;
   
 
   constructor(public router:Router, private myhttp: ServerServiceService ){
@@ -24,10 +26,21 @@ export class UsersComponent  implements OnInit{
     
     this.myhttp.getUsers().subscribe(res => {
       console.log(res)
+      if (this.role !== 'admin'){
+        this.element = true;
+        this.message = "You must be admin to access this page ;)";
+      }
       this.Users =res;
     });
   }
 
+  // ---------------------- Redirects -----------------------//
+  /**
+   *  This function redirects to the 'home' page
+   */
+  redirects(): void{
+    this.router.navigateByUrl('/home')
+  }
 
 
 }
