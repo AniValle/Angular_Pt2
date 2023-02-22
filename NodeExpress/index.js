@@ -193,6 +193,37 @@ app.get('/residents',authenticateJWT, (req,res) => {
     })
 });
 
+
+/**
+ * Get Animal by id
+ */
+app.get('/animal/:id', function (req, res) {
+    let animal_id = req.params.id;
+    console.log(animal_id);
+
+    if(!animal_id) {
+        return res.status(400).send({ error: true, message: 'Please provide animal_id'});
+    }
+
+    var sql = "SELECT * FROM animals where id=?"
+    connection.query(sql, [animal_id], function (error,result){
+        // if (error) throw error;
+        // return res.send({ error: false, data: result[0], message: 'animal data.'});
+        if(error!=null){
+            console.log(req.body);
+            console.log(error);
+            res.status(400).send("not found Animal");
+        
+        }else{ // no hay errores
+            console.log(result);
+            console.log(req.body);
+            // comprobar que el objeto se ha resivido correctamente
+            res.json(req.body);
+        }
+    });
+})
+
+
 /**
  * Update animal 
  */
