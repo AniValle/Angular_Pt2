@@ -40,6 +40,7 @@ app.use(cors());
 
 
 
+
 //main show if npm is up
 app.get('/', (req,res) => {
     res.send(JSON.stringify('Hello to my web'));
@@ -59,15 +60,16 @@ app.post('/login', function (req, res) {
     connection.query(sql,[username, password],function(error, result){
         
         if(error!=null){
-            res.status(400).send("Incorrect credentials");
+            res.status(400).send("Username or password incorrect");
             
         }else{ // no hay errores
             console.log(result[0]);
-            const accessToken = jwt.sign({ username: res.username,  role: res.role }, accessTokenSecret, { expiresIn: '120m' });
-            res.json(res);
+            const accessToken = jwt.sign({ username: result[0].username,  role: result[0].role }, accessTokenSecret, { expiresIn: '1h' });
+            res.send({data:result[0], token: accessToken});
         }
     });
 });
+
 
 /**
  * Register User
@@ -93,17 +95,43 @@ app.post('/register', function (req, res) {
         }else{ // no hay errores
             console.log(result);
             console.log(req.body);
-            // comprobar que el objeto se ha resivido correctamente
+            // comprobar que el objeto se ha recibido correctamente
             res.json(req.body);
 
         }
     });
 })
 
+
+//creem una constant que farà de middleware a qui el faci servir (get i post de animals)
+const authenticateJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            if (err) {
+                console.log(err)
+                return res.sendStatus(403);
+            }
+
+            req.user = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+};
+
 /**
  * Register Animals
  */
-app.post('/registerAnimal', function (req, res){
+app.post('/registerAnimal', authenticateJWT, function (req, res){
+    
+    //rol ususario autenticado
+    const role = req.user.role;
+
     //recoger datos
     let name = req.body.name;
     let specie = req.body.specie;
@@ -112,6 +140,9 @@ app.post('/registerAnimal', function (req, res){
     let sex = req.body.sex;
     let neutered = req.body.neutered;
 
+    if(role !== 'admin'){
+        return res.status(403).send({error: true, message: "You have not permissions to do this!"});
+    }
     // Consulta parametrizada.
     var sql = 'INSERT INTO animals (name, specie, breed, age, sex, neutered) VALUES (?,?,?,?,?,?);';
     connection.query(sql,[name,specie,breed,age,sex,neutered],function(error,result){
@@ -134,7 +165,7 @@ app.post('/registerAnimal', function (req, res){
  * Show User list(funciona)
  */
 
-app.get('/users', (req,res) => {
+app.get('/users', authenticateJWT, (req,res) => {
     console.log("We are in users list!");
 
     connection.query("SELECT * FROM users", (error, results)=>{
@@ -150,7 +181,7 @@ app.get('/users', (req,res) => {
  * Show Animal list(funciona)
  */
 
-app.get('/residents', (req,res) => {
+app.get('/residents',authenticateJWT, (req,res) => {
     console.log("We are in animal residents!");
 
     connection.query("SELECT * FROM animals", (error, results)=>{
@@ -163,10 +194,13 @@ app.get('/residents', (req,res) => {
 });
 
 /**
- * Update animal (no funciona)
+ * Update animal 
  */
-app.put('/update-animal', function (req, res) {
+app.put('/update-animal',authenticateJWT, function (req, res) {
     
+    //rol ususario autenticado
+    const role = req.user.role;
+
     let id = req.body.id;
     let name = req.body.name;
     let specie = req.body.specie;
@@ -174,6 +208,10 @@ app.put('/update-animal', function (req, res) {
     let age = req.body.age;
     let sex = req.body.sex;
     let neutered = req.body.neutered;
+
+    if(role !== 'admin'){
+        return res.status(403).send({error: true, message: "You have not permissions to do this!"});
+    }
 
     var sql = 'UPDATE animals SET name=?, specie=?, breed=?, age=?, sex=?, neutered=? WHERE id=?';
     connection.query(sql,[name,specie,breed,age,sex,neutered, id],function(error,result){
@@ -194,10 +232,14 @@ app.put('/update-animal', function (req, res) {
 /**
  * Delete animal from the list (funciona)
  */
-app.delete('/delete-animal', function (req, res) {
+app.delete('/delete-animal',authenticateJWT, function (req, res) {
  
     let animal_id = req.body.id;
- 
+    
+    if(role !== 'admin'){
+        return res.status(403).send({error: true, message: "You have not permissions to do this!"});
+    }
+
     if (!animal_id) {
         return res.status(400).send({ error: true, message: 'Please provide animal_id' });
     }

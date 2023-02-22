@@ -63,9 +63,10 @@ export class FormAnimalsComponent {
    */
   registerAnimalDB():void{
 
-    this.myhttp.registerAnimal(this.formAnimals.value).subscribe(
-      (result: Animal) => {
+    this.myhttp.registerAnimal(this.formAnimals.value).subscribe({
+      next:(result: Animal) => {
         if (result == null){
+          this.element = true; 
           this.message = 'Error occurred, try again';
         }else{
           console.log('from registerAnimalDb', result);
@@ -73,11 +74,16 @@ export class FormAnimalsComponent {
           this.element = true;         
         }
       },
-      (error) => {
+      error:(error) => {
         console.log('error from register', error);
+        if (error.statusText == "Forbidden"){
+          this.element = true; 
+          this.message = 'You have no permission to do this!';
+        }
+        
       }
         
-    )
+  })
   }
 
   // ---------------------- Redirects -----------------------//

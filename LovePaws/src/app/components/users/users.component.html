@@ -9,7 +9,6 @@
                   <thead>
                     <tr class="table-primary">
                       <th scope="col">Username</th>
-                      <th scope="col">Password</th>
                       <th scope="col">Role</th>
                       <th scope="col">Name</th>
                       <th scope="col">Lastname</th>
@@ -20,7 +19,6 @@
                   <tbody>
                     <tr *ngFor="let user of Users; let i = index">
                       <th scope="row">{{user.username}}</th>
-                      <td ><input [type]="fieldTextType ? 'text' : 'password'" (click)="toggleFieldTextType()" value="{{user.password}}" readonly></td>
                       <td>{{user.role}}</td>
                       <td>{{user.name}}</td>
                       <td>{{user.lastname}}</td>

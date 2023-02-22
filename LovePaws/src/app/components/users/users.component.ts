@@ -13,7 +13,7 @@ export class UsersComponent  implements OnInit{
   Users:any = [];
   user!:User;
   role!:string;
-  fieldTextType!: boolean;
+  
 
   constructor(public router:Router, private myhttp: ServerServiceService ){
   }
@@ -28,9 +28,6 @@ export class UsersComponent  implements OnInit{
     });
   }
 
-  
-  toggleFieldTextType() {
-  this.fieldTextType = !this.fieldTextType;
-  }
+
 
 }

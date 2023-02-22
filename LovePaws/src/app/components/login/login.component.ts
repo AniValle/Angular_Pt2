@@ -53,8 +53,9 @@ export class LoginComponent {
           this.element = true;
           this.message="Creadentials incorrect, try again!";
         }else{
-          
+          console.log(result);
           this.user=JSON.parse(JSON.stringify(result));
+          
           this.router.navigate(['/home']);
         }
       }

@@ -27,21 +27,20 @@ export class ServerServiceService {
   // metodos de conexión
   validateUsers(login: User): Observable<User>{
 
-    return this._http.post<User>(this.url+"/login", login, {responseType: "json" }).pipe(
+    return this._http.post<any>(this.url+"/login", login, {responseType: "json" }).pipe(
       map(res =>{
-        console.log("Resposta del servidor");
-        console.log(JSON.stringify(res));
+        
 
         if(res!=null){
-          const user:User=new User(res.user ,res.password, res.role, res.name, res.lastname, res.mail, res.mobile);
+          const user:User=new User(res.data.user ,res.data.password, res.data.role, res.data.name, res.data.lastname, res.data.mail, res.data.mobile);
           console.log("Objecte Usuari");
           console.log(user);
           
-          localStorage.setItem('user',JSON.stringify(res));
-
+          localStorage.setItem('user',JSON.stringify(res.data));
+          localStorage.setItem('token',res.token);
           this.userSubject.next(user);
         }
-        return res;
+        return res.data;
 
       })
     );
@@ -59,6 +58,7 @@ export class ServerServiceService {
   
   logout(){
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
      
     this.userSubject.next(JSON.parse(null!));
   }
