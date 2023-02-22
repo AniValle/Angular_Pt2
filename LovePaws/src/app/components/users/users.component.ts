@@ -13,6 +13,7 @@ export class UsersComponent  implements OnInit{
   Users:any = [];
   user!:User;
   role!:string;
+  fieldTextType!: boolean;
 
   constructor(public router:Router, private myhttp: ServerServiceService ){
   }
@@ -20,10 +21,16 @@ export class UsersComponent  implements OnInit{
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user") || '{}');
     this.role = `${this.user.role}`;
+    
     this.myhttp.getUsers().subscribe(res => {
       console.log(res)
       this.Users =res;
     });
+  }
+
+  
+  toggleFieldTextType() {
+  this.fieldTextType = !this.fieldTextType;
   }
 
 }

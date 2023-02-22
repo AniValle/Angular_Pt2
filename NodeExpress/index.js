@@ -5,8 +5,12 @@ var cors = require('cors');
 var mysql = require('mysql');
 const bodyParser=require('body-parser');
 const app=express();
+
 //carrega del paquet jsonwebtoken
 const jwt = require('jsonwebtoken');
+
+//paraula secreta necessària en el token
+const accessTokenSecret = 'youraccesstokensecret';
 
 // MYSQL
 
@@ -59,7 +63,8 @@ app.post('/login', function (req, res) {
             
         }else{ // no hay errores
             console.log(result[0]);
-            res.json(result[0]);
+            const accessToken = jwt.sign({ username: res.username,  role: res.role }, accessTokenSecret, { expiresIn: '120m' });
+            res.json(res);
         }
     });
 });
