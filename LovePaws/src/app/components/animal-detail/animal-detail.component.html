@@ -1,0 +1,40 @@
+<p>animal-detail works!</p>
+
+<h1  class="fw-bold"> EDIT ANIMALS </h1>
+
+<div class="container">
+    <div>
+        <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+            <div>
+                <label > Name: </label>
+                <input class="form-control" type="text" formControlName="name" required value="{{this.theAnimal.name}}" >{{theAnimal.name}}
+            </div>
+            <div>
+                <label > Specie: </label>
+                <input class="form-control" type="text" formControlName="specie" required>
+            </div>
+            <div>
+                <label > Breed: </label>
+                <input class="form-control" type="text" formControlName="breed" required>
+            </div>
+            <div>
+                <label > Age: </label>
+                <input class="form-control" type="text" formControlName="age" required>
+            </div>
+            <div>
+                <label > Sex: </label>
+                <input class="form-control" type="text" formControlName="sex" required>
+            </div>
+            <div>
+                <label > Neutered: </label>
+                <input class="form-control" type="text" formControlName="neutered" required>
+            </div>
+
+            <div>
+                <button class="btn btn-primary" type="submit" >Editar</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>

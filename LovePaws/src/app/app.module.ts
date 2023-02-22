@@ -23,6 +23,7 @@ import { FormAnimalsComponent } from './components/form-animals/form-animals.com
 import { AnimalpipesPipe } from './pipes/animalpipes.pipe';
 import { UserpipesPipe } from './pipes/userpipes.pipe';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { AnimalDetailComponent } from './components/animal-detail/animal-detail.component';
 
 
 
@@ -43,7 +44,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     RepitePassDirective,
     FormAnimalsComponent,
     AnimalpipesPipe,
-    UserpipesPipe
+    UserpipesPipe,
+    AnimalDetailComponent
   ],
   imports: [
     BrowserModule,
