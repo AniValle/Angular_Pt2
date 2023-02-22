@@ -36,7 +36,7 @@
                       <td>{{animal.sex | animalpipes: 'sex'}}</td>
                       <td>{{animal.neutered | animalpipes : 'neutered'}}</td>
                       <td *ngIf="role == 'admin'" class="text-center">
-                        <button class="btn btn-sm btn-primary" routerLink="/edit-animal/{{animal.id}}">Edit</button>
+                        <button class="btn btn-sm btn-primary" (click)="getMyAnimal(animal)">Edit</button>
                         <button class="btn btn-sm btn-danger">Delete</button>
                       </td>
                     </tr>

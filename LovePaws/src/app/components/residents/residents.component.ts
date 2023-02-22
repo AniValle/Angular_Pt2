@@ -44,4 +44,9 @@ export class ResidentsComponent implements OnInit{
     this.router.navigateByUrl('/formAnimals')
   }
 
+  getMyAnimal(animal:Animal){
+    this.myhttp.myAnimal(animal);
+    this.router.navigateByUrl('/edit-animal');
+  }
+
 }
