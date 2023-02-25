@@ -37,7 +37,7 @@
                       <td>{{animal.neutered | animalpipes : 'neutered'}}</td>
                       <td *ngIf="role == 'admin'" class="text-center">
                         <button class="btn btn-sm btn-primary" (click)="getMyAnimal(animal)">Edit</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
+                        <button class="btn btn-sm btn-danger" (click)="delete(animal.id, i)">Delete</button>
                       </td>
                     </tr>
                   </tbody>
@@ -49,5 +49,17 @@
     <form *ngIf="role == 'admin'"(ngSubmit)="sendFormAdd()" class="text-center">
         <button type="submit" class="btn btn-primary" > Add Animals </button>
     </form>
+</div>
+<div *ngIf="element == true" id="toasts" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <strong class="me-auto">Love Paws</strong>
+    <small>Ani & Andrea</small>
+      <button  type="submit" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true"></span>
+      </button>
+  </div>
+  <div class="toast-body">
+      {{message}}
+  </div>
 </div>
   </div>

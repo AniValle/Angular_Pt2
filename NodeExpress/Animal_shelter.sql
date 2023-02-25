@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-02-2023 a las 18:06:56
+-- Tiempo de generación: 25-02-2023 a las 14:02:31
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -45,7 +45,11 @@ INSERT INTO `animals` (`id`, `name`, `specie`, `breed`, `age`, `sex`, `neutered`
 (1, 'Bobby', 'Dog', 'Belgian Malinois', 3, 'M', 'N'),
 (2, 'Lili', 'Cat', 'Bengal', 8, 'F', 'Y'),
 (3, 'Pinky', 'Dog', 'German Shepherd', 8, 'M', 'N'),
-(4, 'Minina', 'Cat', 'American Shorthair', 4, 'F', 'N');
+(4, 'Minina', 'Cat', 'American Shorthair', 4, 'F', 'Y'),
+(6, 'Rocky', 'Dog', 'Spanish Greyhound', 1, 'M', 'N'),
+(7, 'Ramona', 'Turtle', 'Russian turtle', 17, 'F', 'N'),
+(8, 'Lia', 'Ferret', 'Standard', 4, 'F', 'Y'),
+(9, 'Tambor', 'Rabbit', 'Rex', 2, 'M', 'N');
 
 -- --------------------------------------------------------
 

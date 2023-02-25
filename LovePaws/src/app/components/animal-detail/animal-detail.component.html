@@ -1,34 +1,33 @@
-<p>animal-detail works!</p>
-
-<h1  class="fw-bold"> EDIT ANIMALS </h1>
-
-<div class="container">
+<div class="container" style="margin-top: 2%;">
+    <h1  class="fw-bold"> EDIT ANIMALS </h1>
     <div>
         <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
-            <div>
+            <div formControlName="name">
                 <label > Name: </label>
-                <input class="form-control" type="text" formControlName="name" required value="{{this.theAnimal.name}}" >{{theAnimal.name}}
+                <input class="form-control" type="text" value="{{this.theAnimal.name}}" required >
             </div>
-            <div>
+            <div formControlName="specie">
                 <label > Specie: </label>
-                <input class="form-control" type="text" formControlName="specie" required>
+                <input class="form-control" value="{{this.theAnimal.specie}}" type="text"  required>
             </div>
-            <div>
+            <div formControlName="breed">
                 <label > Breed: </label>
-                <input class="form-control" type="text" formControlName="breed" required>
+                <input class="form-control" type="text" value="{{this.theAnimal.breed}}"  required>
             </div>
-            <div>
+            <div formControlName="age">
                 <label > Age: </label>
-                <input class="form-control" type="text" formControlName="age" required>
+                <input class="form-control" type="text" value="{{this.theAnimal.age}}"  required>
             </div>
-            <div>
+            <div formControlName="sex">
                 <label > Sex: </label>
-                <input class="form-control" type="text" formControlName="sex" required>
+                <input class="form-control" type="text" value="{{this.theAnimal.sex}}"  required>
             </div>
-            <div>
+            <div formControlName="neutered">
                 <label > Neutered: </label>
-                <input class="form-control" type="text" formControlName="neutered" required>
+                <input class="form-control" type="text" value="{{this.theAnimal.neutered}}"  required>
             </div>
+            <br>
+            <br>
 
             <div>
                 <button class="btn btn-primary" type="submit" >Editar</button>

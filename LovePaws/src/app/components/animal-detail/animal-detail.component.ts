@@ -24,18 +24,6 @@ export class AnimalDetailComponent implements OnInit {
               private myhttp: AnimalserviceService)
   {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.myhttp.getAnimal(this.getId).subscribe(res =>
-    {
-      this.updateForm.setValue({
-        //name:   res.name,
-        name:   res['name'],
-        specie: res['specie'],
-        breed:  res['breed'],
-        age:    res['age'],
-        sex:    res['sex'],
-        neutered: res['neutered'],
-      })
-    });
     this.updateForm = this.formBuilder.group({
       name:   [''],
       specie: [''],
@@ -44,12 +32,28 @@ export class AnimalDetailComponent implements OnInit {
       sex:    [''],
       neutered: [''],
     })
+
+    this.myhttp.getAnimal(this.getId).subscribe(res =>
+      {
+  
+        this.updateForm.patchValue({
+          name:   res['name'],
+          specie: res['specie'],
+          breed:  res['breed'],
+          age:    res['age'],
+          sex:    res['sex'],
+          neutered: res['neutered'],
+        })
+    });
+
+    
   }
 
   ngOnInit() {
-    //throw new Error('Method not implemented.');
     this.theAnimal=this.myhttp.a;
     console.log(this.theAnimal);
+
+ 
   }
 
   onUpdate():any {

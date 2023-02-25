@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
+import { AuthInterceptorService } from 'src/app/services/auth-interceptor.service';
 import { ServerServiceService } from 'src/app/services/server-service.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class UsersComponent  implements OnInit{
   element = false;
   
 
-  constructor(public router:Router, private myhttp: ServerServiceService ){
+  constructor(public router:Router, private myhttp: ServerServiceService, private auth: AuthInterceptorService){
   }
   
   ngOnInit(): void {
@@ -26,11 +27,13 @@ export class UsersComponent  implements OnInit{
     
     this.myhttp.getUsers().subscribe(res => {
       console.log(res)
+      
       if (this.role !== 'admin'){
         this.element = true;
         this.message = "You must be admin to access this page ;)";
       }
       this.Users =res;
+      
     });
   }
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AnimalserviceService } from 'src/app/services/animalservice.service';
 import { Animal } from 'src/app/models/Animal';
 import { User } from 'src/app/models/User';
+import { AuthInterceptorService } from 'src/app/services/auth-interceptor.service';
 
 @Component({
   selector: 'app-residents',
@@ -14,8 +15,10 @@ export class ResidentsComponent implements OnInit{
   Animals:any = [];
   user!:User;
   role!:string;
+  message!:string;
+  element = false;
   
-  constructor(public router:Router, private myhttp: AnimalserviceService ){
+  constructor(public router:Router, private myhttp: AnimalserviceService, private auth: AuthInterceptorService ){
   }
 
   ngOnInit(): void {
@@ -48,5 +51,4 @@ export class ResidentsComponent implements OnInit{
     this.myhttp.myAnimal(animal);
     this.router.navigateByUrl('/edit-animal');
   }
-
 }

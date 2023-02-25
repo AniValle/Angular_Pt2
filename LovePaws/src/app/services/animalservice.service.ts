@@ -7,6 +7,7 @@ import { Animal } from '../models/Animal';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AnimalserviceService {
   url:string='http://localhost:3000';
   a!:Animal;
@@ -30,16 +31,17 @@ export class AnimalserviceService {
     return this._http.put(`${this.url}/update-animal/${id}`, data);
   }
 
-
+  
   // Delete
   deleteAnimal(id:any): Observable<any> {
-
-    return this._http.delete<Animal>(this.url + "/delete-animal", id)
+    return this._http.delete<any>(this.url + "/delete-animal", id)
   }
-
+  // Add animal
   registerAnimal(animalData: Animal): Observable<Animal> {
     return this._http.post<Animal>(this.url+"/registerAnimal", animalData);
   }
+
+  //Get animal by id
   myAnimal(animal: Animal){
     this.a= animal;
   }
