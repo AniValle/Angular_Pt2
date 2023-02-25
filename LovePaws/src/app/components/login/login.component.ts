@@ -47,8 +47,8 @@ export class LoginComponent {
 
   testLogin():void{
 
-    this.myhttp.validateUsers(this.miformlogin.value).subscribe(
-      result => {
+    this.myhttp.validateUsers(this.miformlogin.value).subscribe({
+      next: (result: User) => {
         if(result==null){
           this.element = true;
           this.message="Creadentials incorrect, try again!";
@@ -59,7 +59,7 @@ export class LoginComponent {
           this.router.navigate(['/home']);
         }
       }
-    )
+    })
   }
 
 

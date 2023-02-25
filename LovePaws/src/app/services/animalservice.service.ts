@@ -21,14 +21,19 @@ export class AnimalserviceService {
 
   }
 
-  // Obtener un animal dado un id
+  // Add animal
+  registerAnimal(animalData: Animal): Observable<Animal> {
+    return this._http.post<Animal>(this.url+"/registerAnimal", animalData);
+  }
+
+  // Obtener un animal dado un id  -> De momento no las usamos
   getAnimal(id:any): Observable<Animal> {
     return this._http.get<Animal>(`${this.url}/animal/${id}`)
   }
 
-  // Update
-  updateAnimal(id:any, data:any): Observable<any> {
-    return this._http.put(`${this.url}/update-animal/${id}`, data);
+  // Update -> FUNCIONA
+  updateAnimal(data:any): Observable<any> {
+    return this._http.put(`${this.url}/update-animal`, data);
   }
 
   
@@ -36,14 +41,11 @@ export class AnimalserviceService {
   deleteAnimal(id:any): Observable<any> {
     return this._http.delete<any>(this.url + "/delete-animal", id)
   }
-  // Add animal
-  registerAnimal(animalData: Animal): Observable<Animal> {
-    return this._http.post<Animal>(this.url+"/registerAnimal", animalData);
-  }
+
 
   //Get animal by id
   myAnimal(animal: Animal){
-    this.a= animal;
+    return this.a= animal;
   }
 
 }

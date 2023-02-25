@@ -64,7 +64,7 @@ app.post('/login', function (req, res) {
             
         }else{ // no hay errores
             console.log(result[0]);
-            const accessToken = jwt.sign({ username: result[0].username,  role: result[0].role }, accessTokenSecret, { expiresIn: '1h' });
+            const accessToken = jwt.sign({ username: result[0].username,  role: result[0].role }, accessTokenSecret, { expiresIn: '2h' });
             res.send({data:result[0], token: accessToken});
         }
     });

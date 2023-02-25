@@ -4,27 +4,27 @@
         <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
             <div formControlName="name">
                 <label > Name: </label>
-                <input class="form-control" type="text" value="{{this.theAnimal.name}}" required >
+                <input class="form-control" type="text" required [value]="theAnimal.name" >
             </div>
             <div formControlName="specie">
                 <label > Specie: </label>
-                <input class="form-control" value="{{this.theAnimal.specie}}" type="text"  required>
+                <input class="form-control" type="text" required [value]="theAnimal.specie" >
             </div>
             <div formControlName="breed">
                 <label > Breed: </label>
-                <input class="form-control" type="text" value="{{this.theAnimal.breed}}"  required>
+                <input class="form-control" type="text" required [value]="theAnimal.breed" >
             </div>
             <div formControlName="age">
                 <label > Age: </label>
-                <input class="form-control" type="text" value="{{this.theAnimal.age}}"  required>
+                <input class="form-control" type="text"  required [value]="theAnimal.age" >
             </div>
             <div formControlName="sex">
                 <label > Sex: </label>
-                <input class="form-control" type="text" value="{{this.theAnimal.sex}}"  required>
+                <input class="form-control" type="text" required [value]="theAnimal.sex" >
             </div>
             <div formControlName="neutered">
                 <label > Neutered: </label>
-                <input class="form-control" type="text" value="{{this.theAnimal.neutered}}"  required>
+                <input class="form-control" type="text" required [value]="theAnimal.neutered" >
             </div>
             <br>
             <br>
