@@ -1,7 +1,7 @@
 <div class="container" style="margin-top: 2%;">
     <h1  class="fw-bold"> EDIT ANIMALS </h1>
     <div>
-        <form [formGroup]="this.updateForm" (ngSubmit)="onUpdate()">
+        <form [formGroup]="this.updateForm" (ngSubmit)="onUpdate()" *ngIf="role == 'admin'">
             <div>
                 <label > Name: </label>
                 <input class="form-control"  formControlName="name" type="text" >
@@ -27,14 +27,23 @@
                 <input class="form-control" formControlName="neutered" type="text" >
             </div>
             <br>
-            <br>
-
             <div>
                 <button class="btn btn-primary" type="submit" >Editar</button>
-                {{message}}
+
             </div>
         </form>
-
+        <div *ngIf="element == true" id="toasts" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+              <strong class="me-auto">Love Paws</strong>
+              <small>Ani & Andrea</small>
+                <button  type="submit" (click)="redirects()" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="toast-body">
+                {{message}}
+            </div>
+          </div>
         
 
     </div>

@@ -82,6 +82,14 @@ export class RegisterComponent {
     
   }
 
+  // ---------------------- Redirects -----------------------//
+  /**
+   *  This function redirects to the 'resident' page
+   */
+  redirects(): void{
+    this.router.navigateByUrl('/login')
+  }
+
   // ------------------------- Button ---------------------------//
   submit():void {
     this.testRegister();

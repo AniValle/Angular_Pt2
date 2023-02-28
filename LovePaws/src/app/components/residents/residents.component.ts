@@ -18,7 +18,7 @@ export class ResidentsComponent implements OnInit{
   message!:string;
   element = false;
   
-  constructor(public router:Router, private myhttp: AnimalserviceService, private auth: AuthInterceptorService ){
+  constructor(public router:Router, private myhttp: AnimalserviceService ){
   }
 
   ngOnInit(): void {
@@ -30,33 +30,26 @@ export class ResidentsComponent implements OnInit{
     });
   }
 
-  /**
-   * Delete animal 
-   */
-  // delete(id:any, i:any) {
-  //   //console.log(id);
-  //   if(window.confirm('Do you want to go ahead?')) {
-  //     this.myhttp.deleteAnimal(id).subscribe((res) => {
-  //       this.Animals.splice(i, 1);
-  //     })
-  //   }
-  // }
 
-  deleteAnimal(animal: Animal) {
+  deleteAnimal(animal: Animal, i:any) {
     if(window.confirm('Do you want to go ahead?')) {
         console.log('animal id from the deleteAnimal in residents.', animal);
       this.myhttp.deleteAnimalByID(animal.id).subscribe({
         next: (result: Animal) => {
           if( result == null){
+            this.element = true;
             this.message = "Error occurred"
           }else{
-            console.log('From deleteAniml',result)
-            this.message = 'Success'
+            console.log('From deleteAnimal',result)
+            this.Animals.splice(i, 1);
+            this.element = true;
+            this.message = 'Success deleting the animal'
           }
         },
         error: (error) => {
           console.log('Error from delete', error);
           if (error.statusText == "Forbidden"){
+            this.element = true;
             this.message = 'You have no permission'
           }
         }

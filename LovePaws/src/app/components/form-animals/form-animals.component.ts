@@ -81,8 +81,9 @@ export class FormAnimalsComponent implements OnInit{
           this.message = 'Error occurred, try again';
         }else{
           console.log('from registerAnimalDb', result);
+          this.element = true;
           this.message = 'Register done!';
-          this.element = true;         
+                   
         }
       },
       error:(error) => {

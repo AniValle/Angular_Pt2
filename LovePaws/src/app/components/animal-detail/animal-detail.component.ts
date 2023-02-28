@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 import { AnimalserviceService } from 'src/app/services/animalservice.service';
 import { Animal } from 'src/app/models/Animal';
+import { User } from 'src/app/models/User';
 
 
 @Component({
@@ -13,9 +14,11 @@ import { Animal } from 'src/app/models/Animal';
 export class AnimalDetailComponent implements OnInit {
 
   getId!: any;
-  // updateForm!: FormGroup;
   message!: string;
   theAnimal!: Animal;
+  element = false;
+  user!:User;
+  role!:string;
 
   constructor(public formBuilder: FormBuilder,
     public router: Router,
@@ -48,12 +51,16 @@ export class AnimalDetailComponent implements OnInit {
     this.updateForm.controls['age'].setValue(this.theAnimal.age);
     this.updateForm.controls['sex'].setValue(this.theAnimal.sex);
     this.updateForm.controls['neutered'].setValue(this.theAnimal.neutered);
+    this.user = JSON.parse(localStorage.getItem("user") || '{}');
+    this.role = `${this.user.role}`;
+    if (this.role !== 'admin'){
+      this.element = true;
+      this.message = "You must be admin to access this page ;)";
+    }
 
   }
 
   updateAnimalDB(): void {
-
-
 
     this.myhttp.updateAnimal({
       id: this.theAnimal.id,
@@ -66,30 +73,35 @@ export class AnimalDetailComponent implements OnInit {
     }).subscribe({
       next: (result) => {
         if (result == null || result == 0) {
-          this.message = 'Error al actualizar Animal';
+          this.element = true;
+          this.message = 'Error updating the animal, try again!';
         } else {
           console.log('from updateAnimalDB', result);
-          this.message = 'Update done1';
+          this.element = true;
+          this.message = 'Update done succesfully!';
         }
       },
       error: (error) => {
         console.log('error from updateanimaldb', error);
         if (error.statusText == 'Forbidden') {
-          this.message = 'You hace no permission to do this!'
+          this.element = true;
+          this.message = 'You have no permission to do this!'
         }
       }
     })
   }
 
   onUpdate(): any {
-    // this.myhttp.updateAnimal(this.updateForm.value).subscribe(() => {
-    //   console.log('Animal updated successfully!')
-    //   this.ngZone.run(() =>
-    //   this.router.navigateByUrl('/residents'))
-    // }, (err) => {
-    //   console.log(err);
-    // });
+
     this.updateAnimalDB()
 
+  }
+
+  // ---------------------- Redirects -----------------------//
+  /**
+   *  This function redirects to the 'resident' page
+   */
+  redirects(): void{
+    this.router.navigateByUrl('/residents')
   }
 }

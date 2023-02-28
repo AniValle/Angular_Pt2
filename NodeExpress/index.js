@@ -15,10 +15,9 @@ const accessTokenSecret = 'youraccesstokensecret';
 // MYSQL
 
 var connection = mysql.createConnection({
-    socketPath: "/var/run/mysqld/mysqld.sock",
     host: 'localhost',
     database: 'Animal_shelter',
-    user: 'animalusr',
+    user: 'root',
     password: ''
 });
 
