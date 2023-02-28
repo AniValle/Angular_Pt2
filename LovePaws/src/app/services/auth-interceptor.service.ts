@@ -2,13 +2,14 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
+import { ServerServiceService } from './server-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthInterceptorService implements HttpInterceptor{
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private _http: ServerServiceService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
   
@@ -28,7 +29,12 @@ export class AuthInterceptorService implements HttpInterceptor{
       catchError((err: HttpErrorResponse) => {
 
         if (err.status === 401) {
+          if(window.confirm('Session expired, log in again!')) {
+            this.router.navigateByUrl('/login');
+            this._http.logout();
+          }
           this.router.navigateByUrl('/login');
+          this._http.logout();
         }
 
         return throwError(() => err );
