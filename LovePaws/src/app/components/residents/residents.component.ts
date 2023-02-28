@@ -33,36 +33,36 @@ export class ResidentsComponent implements OnInit{
   /**
    * Delete animal 
    */
-  delete(id:any, i:any) {
-    //console.log(id);
-    if(window.confirm('Do you want to go ahead?')) {
-      this.myhttp.deleteAnimal(id).subscribe((res) => {
-        this.Animals.splice(i, 1);
-      })
-    }
-  }
-
-  // deleteAnimal(animal: Animal) {
-  //   console.log(animal.id);
+  // delete(id:any, i:any) {
+  //   //console.log(id);
   //   if(window.confirm('Do you want to go ahead?')) {
-  //     this.myhttp.deleteAnimal(animal).subscribe({
-  //       next: (result: Animal) => {
-  //         if( result == null){
-  //           this.message = "Error occurred"
-  //         }else{
-  //           console.log('From deleteAniml',result)
-  //           this.message = 'Success'
-  //         }
-  //       },
-  //       error: (error) => {
-  //         console.log('Error fron delete', error);
-  //         if (error.statusText == "Forbidden"){
-  //           this.message = 'You have no permission'
-  //         }
-  //       }
+  //     this.myhttp.deleteAnimal(id).subscribe((res) => {
+  //       this.Animals.splice(i, 1);
   //     })
   //   }
   // }
+
+  deleteAnimal(animal: Animal) {
+    console.log(animal.id);
+    if(window.confirm('Do you want to go ahead?')) {
+      this.myhttp.deleteAnimal(animal.id).subscribe({
+        next: (result: Animal) => {
+          if( result == null){
+            this.message = "Error occurred"
+          }else{
+            console.log('From deleteAniml',result)
+            this.message = 'Success'
+          }
+        },
+        error: (error) => {
+          console.log('Error from delete', error);
+          if (error.statusText == "Forbidden"){
+            this.message = 'You have no permission'
+          }
+        }
+      })
+    }
+  }
 
   sendFormAdd(): void{
     this.router.navigateByUrl('/formAnimals')

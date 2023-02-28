@@ -1,38 +1,41 @@
 <div class="container" style="margin-top: 2%;">
     <h1  class="fw-bold"> EDIT ANIMALS </h1>
     <div>
-        <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
-            <div formControlName="name">
+        <form [formGroup]="this.updateForm" (ngSubmit)="onUpdate()">
+            <div>
                 <label > Name: </label>
-                <input class="form-control" type="text" required [value]="theAnimal.name" >
+                <input class="form-control"  formControlName="name" type="text" >
             </div>
-            <div formControlName="specie">
+            <div>
                 <label > Specie: </label>
-                <input class="form-control" type="text" required [value]="theAnimal.specie" >
+                <input class="form-control" formControlName="specie" type="text" >
             </div>
-            <div formControlName="breed">
+            <div>
                 <label > Breed: </label>
-                <input class="form-control" type="text" required [value]="theAnimal.breed" >
+                <input class="form-control" formControlName="breed" type="text" >
             </div>
-            <div formControlName="age">
+            <div>
                 <label > Age: </label>
-                <input class="form-control" type="text"  required [value]="theAnimal.age" >
+                <input class="form-control" formControlName="age" type="text"  >
             </div>
-            <div formControlName="sex">
+            <div>
                 <label > Sex: </label>
-                <input class="form-control" type="text" required [value]="theAnimal.sex" >
+                <input class="form-control" formControlName="sex" type="text" >
             </div>
-            <div formControlName="neutered">
+            <div>
                 <label > Neutered: </label>
-                <input class="form-control" type="text" required [value]="theAnimal.neutered" >
+                <input class="form-control" formControlName="neutered" type="text" >
             </div>
             <br>
             <br>
 
             <div>
                 <button class="btn btn-primary" type="submit" >Editar</button>
+                {{message}}
             </div>
         </form>
+
+        
 
     </div>
 

@@ -39,13 +39,14 @@ export class AnimalserviceService {
   
   // Delete
   deleteAnimal(id:any): Observable<any> {
+    console.log(id);
     return this._http.delete<any>(this.url + "/delete-animal", id)
   }
 
 
   //Get animal by id
   myAnimal(animal: Animal){
-    return this.a= animal;
+    return this.a = animal;
   }
 
 }
