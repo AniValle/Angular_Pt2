@@ -15,9 +15,10 @@ const accessTokenSecret = 'youraccesstokensecret';
 // MYSQL
 
 var connection = mysql.createConnection({
+    socketPath: "/var/run/mysqld/mysqld.sock",
     host: 'localhost',
     database: 'Animal_shelter',
-    user: 'root',
+    user: 'animalusr',
     password: ''
 });
 
@@ -246,14 +247,12 @@ app.put('/update-animal',authenticateJWT, function (req, res) {
 
     var sql = 'UPDATE animals SET name=?, specie=?, breed=?, age=?, sex=?, neutered=? WHERE id=?';
     connection.query(sql,[name,specie,breed,age,sex,neutered, id],function(error,result){
-        console.log('the sql query generated ===>', sql);
         if(error!=null){
             // console.log(req.body);
             console.log(error);
             res.status(400).send("The animal could not be updated");
         
         }else{ // no hay errores
-            console.log('query result ==>', result);
             // console.log(req.body);
             // comprobar que el objeto se ha recibido correctamente
             //res.json(req.body);
@@ -267,23 +266,24 @@ app.put('/update-animal',authenticateJWT, function (req, res) {
 /**
  * Delete animal from the list (funciona)
  */
-app.delete('/delete-animal',authenticateJWT, function (req, res) {
+app.post('/delete-animal',authenticateJWT, function (req, res) {
  
-    let animal_id = req.body;
-    console.log(animal_id)
-    
-    // if(role !== 'admin'){
-    //     return res.status(403).send({error: true, message: "You have not permissions to do this!"});
-    // }
+    let animal_id = req.body.id;
 
-    // if (!animal_id) {
-    //     return res.status(400).send({ error: true, message: 'Please provide animal_id' });
-    // }
-    // var sql = 'DELETE FROM animals WHERE id =?';
-    // connection.query(sql, [animal_id], function (error, results, fields) {
-    //     if (error) throw error;
-    //     return res.send({ error: false, data: results, message: 'Animal has been deleted successfully.' });
-    // });
+    const role = req.user.role;
+
+    if(role !== 'admin'){
+        return res.status(403).send({error: true, message: "You have not permissions to do this!"});
+    }
+
+    if (!animal_id) {
+        return res.status(400).send({ error: true, message: 'Please provide animal_id' });
+    }
+    var sql = 'DELETE FROM animals WHERE id =?';
+    connection.query(sql, [animal_id], function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, data: results, message: 'Animal has been deleted successfully.' });
+    });
 });
 
 

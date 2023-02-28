@@ -43,9 +43,9 @@ export class ResidentsComponent implements OnInit{
   // }
 
   deleteAnimal(animal: Animal) {
-    console.log(animal.id);
     if(window.confirm('Do you want to go ahead?')) {
-      this.myhttp.deleteAnimal(animal.id).subscribe({
+        console.log('animal id from the deleteAnimal in residents.', animal);
+      this.myhttp.deleteAnimalByID(animal.id).subscribe({
         next: (result: Animal) => {
           if( result == null){
             this.message = "Error occurred"

@@ -23,7 +23,8 @@ export class AnimalserviceService {
 
   // Add animal
   registerAnimal(animalData: Animal): Observable<Animal> {
-    return this._http.post<Animal>(this.url+"/registerAnimal", animalData);
+    return this._http.post<Animal>(this.url+"/registerAnimal", animalData)
+;
   }
 
   // Obtener un animal dado un id  -> De momento no las usamos
@@ -38,9 +39,10 @@ export class AnimalserviceService {
 
   
   // Delete
-  deleteAnimal(id:any): Observable<any> {
-    console.log(id);
-    return this._http.delete<any>(this.url + "/delete-animal", id)
+  deleteAnimalByID(id:any): Observable<Animal> {
+    console.log('deleteAnimal received value in the "animalservice"', id);
+    return this._http.post<Animal>(this.url + "/delete-animal", {id: id});
+
   }
 
 
