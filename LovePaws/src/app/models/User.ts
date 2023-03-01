@@ -1,4 +1,8 @@
-
+/**
+ * @authors   Ani Valle and Andrea Morales
+ * @file      Class of users.
+ *            With getetrs and setters.
+ */
 export class User {
 
     #user:string|undefined;

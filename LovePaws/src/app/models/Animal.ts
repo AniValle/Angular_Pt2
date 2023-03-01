@@ -1,3 +1,8 @@
+/**
+ * @authors   Ani Valle and Andrea Morales
+ * @file      Class of animal.
+ *            With getetrs and setters.
+ */
 
 export class Animal {
  

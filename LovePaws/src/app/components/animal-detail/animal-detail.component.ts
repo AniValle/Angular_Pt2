@@ -49,6 +49,13 @@ export class AnimalDetailComponent implements OnInit {
 
   /** Assign values to the edit form and a message in case a user reaches this page */
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("user") || '{}');
+    this.role = `${this.user.role}`;
+    // Show message if not admin
+    if (this.role !== 'admin') {
+      this.element = true;
+      this.message = "You must be admin to access this page ;)";
+    }
     this.theAnimal = this.myhttp.a;
     //console.log('Animal should be here!', this.theAnimal);
     this.updateForm.controls['name'].setValue(this.theAnimal.name);
@@ -57,13 +64,7 @@ export class AnimalDetailComponent implements OnInit {
     this.updateForm.controls['age'].setValue(this.theAnimal.age);
     this.updateForm.controls['sex'].setValue(this.theAnimal.sex);
     this.updateForm.controls['neutered'].setValue(this.theAnimal.neutered);
-    this.user = JSON.parse(localStorage.getItem("user") || '{}');
-    this.role = `${this.user.role}`;
-    // Show message if not admin
-    if (this.role !== 'admin') {
-      this.element = true;
-      this.message = "You must be admin to access this page ;)";
-    }
+    
 
   }
 

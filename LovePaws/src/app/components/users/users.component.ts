@@ -1,7 +1,11 @@
+/**
+ * @authors   Ani Valle and Andrea Morales
+ * @file      This component manages the view of users.
+ *            It connects with a service, which makes the connection with the DB
+ */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
-import { AuthInterceptorService } from 'src/app/services/auth-interceptor.service';
 import { ServerServiceService } from 'src/app/services/server-service.service';
 
 @Component({
@@ -11,16 +15,21 @@ import { ServerServiceService } from 'src/app/services/server-service.service';
 })
 export class UsersComponent  implements OnInit{
 
+  //Set variables
   Users:any = [];
   user!:User;
   role!:string;
   message!:string;
   element = false;
   
-
-  constructor(public router:Router, private myhttp: ServerServiceService, private auth: AuthInterceptorService){
-  }
+  //Calls the constructor with the service
+  constructor(public router:Router, private myhttp: ServerServiceService){}
   
+  /**
+   * With the start of this component
+   * Check localstorage and consults the database with the service
+   * Check if the user is admin to display the data
+   */
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user") || '{}');
     this.role = `${this.user.role}`;

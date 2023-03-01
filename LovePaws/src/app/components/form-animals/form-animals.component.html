@@ -4,8 +4,8 @@
     <h1  class="fw-bold"> FORM ANIMALS </h1>
     <br>
     <br>
-    <div *ngIf="role == 'admin'">
-        <form [formGroup]="formAnimals" (ngSubmit)="submit()" >
+    <div >
+        <form [formGroup]="formAnimals" (ngSubmit)="submit()" *ngIf="role == 'admin'">
         <fieldset>
 
             <!-- ------------------------- Name --------------------------- -->
@@ -143,23 +143,22 @@
 
             <br>
             <br>
-            <!-- ----------------------------- Show Message ----------------------------- -->
-            <div *ngIf="element == true" id="toasts" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                  <strong class="me-auto">Love Paws</strong>
-                  <small>Ani & Andrea</small>
-                    <button  type="submit" (click)="redirects()" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="toast-body">
-                    {{message}}
-                </div>
-            </div>
-            
-
+           
         </fieldset>
         </form>
+         <!-- ----------------------------- Show Message ----------------------------- -->
+         <div *ngIf="element == true" id="toasts" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+              <strong class="me-auto">Love Paws</strong>
+              <small>Ani & Andrea</small>
+                <button  type="submit" (click)="redirects()" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="toast-body">
+                {{message}}
+            </div>
+        </div>
         
     </div>
     

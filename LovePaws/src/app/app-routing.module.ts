@@ -18,7 +18,7 @@ import { AnimalDetailComponent } from './components/animal-detail/animal-detail.
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'/home', // pagina que aparecera por defecto.
+    redirectTo:'/home', 
     pathMatch:'full'
   },
   { path: 'navbar',       component: NavBarComponent},
@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'edit-animal', component: AnimalDetailComponent, canActivate: [RoutingGuard]},
   { path: 'users',        component: UsersComponent, canActivate: [RoutingGuard] },
   { path: 'logout',       component: LogoutComponent },
-  { path: '**',           component:PagenotfoundComponent // este path tiene que estar al final
+  { path: '**',           component:PagenotfoundComponent 
   }
 ];
 

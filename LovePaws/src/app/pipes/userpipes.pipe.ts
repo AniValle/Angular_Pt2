@@ -1,3 +1,7 @@
+/**
+ * @authors   Ani Valle and Andrea Morales
+ * @file      Edit the view of database animal data
+ */
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -5,6 +9,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class UserpipesPipe implements PipeTransform {
 
+  //Change the view of the mobile
   transform(rawNum:string) {
     rawNum = "+1"+ rawNum;
 

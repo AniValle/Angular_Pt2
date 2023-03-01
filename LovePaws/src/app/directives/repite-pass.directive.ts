@@ -1,5 +1,8 @@
+/**
+ * @authors   Ani Valle and Andrea Morales
+ * @file      This directive checks if the repeat password is correct.
+ */
 import { Directive, Input } from '@angular/core';
-//Imports que necesito
 import { Validator, NG_VALIDATORS, AbstractControl, ValidationErrors} from '@angular/forms'
 
 @Directive({
@@ -9,14 +12,15 @@ import { Validator, NG_VALIDATORS, AbstractControl, ValidationErrors} from '@ang
 })
 export class RepitePassDirective implements Validator {
 
-  @Input() parametro:any;//recoger un valor que viene desde el formulario
+  @Input() parametro:any;//gets the value from the form
 
   constructor() { }
+  
   validate(control: AbstractControl): ValidationErrors | null {
     if(control && control.value!= this.parametro){
-      return {'repitePass':true}; //cuando hay errores.
+      return {'repitePass':true}; // errors.
     }else{
-      return null; // no hay errores
+      return null; // no errors
     }
   }
 }

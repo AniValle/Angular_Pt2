@@ -1,3 +1,8 @@
+/**
+ * @authors   Ani Valle and Andrea Morales
+ * @file      This component manages the creation of an user.
+ *            It connects with a service, which makes the connection with the DB
+ */
 import { Component} from '@angular/core';
 import { FormGroup, FormControl,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,14 +15,18 @@ import { ServerServiceService } from 'src/app/services/server-service.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent {
 
+  //Set variables
   datos!:string;
   miform!:FormGroup;
   message!:string;
   element = false;
 
+  // Call the constructor with the service
   constructor (public router:Router, private myhttp: ServerServiceService) {
+    
     // Validations of the registration form
     this.miform = new FormGroup({
 
@@ -35,7 +44,6 @@ export class RegisterComponent {
       ]),
       confirm_pass: new FormControl('',[
         Validators.required
-        // se ha de validar con una directiva
       ]),
       name: new FormControl('',[
         Validators.required,
@@ -48,7 +56,6 @@ export class RegisterComponent {
       email:new FormControl('',[
         Validators.required,
         Validators.email
-        //Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
       ]),
       tel: new FormControl('',[
         Validators.required,
@@ -58,27 +65,30 @@ export class RegisterComponent {
 
   }
 
+  /**
+   * Checks if the data is valid and do the register
+   * @returns message depending the response of the server
+   */
   testRegister():void {
 
-    this.myhttp.registerUser(this.miform.value).subscribe(
-      (result: User) => {
+    this.myhttp.registerUser(this.miform.value).subscribe({
+      next:(result: User) => {
         if(result == null){
           this.element = true;
           this.message = 'An error occurred while trying to save the data';
         }else{
-          this.element = true;
           console.log('from testRegister', result);
-          this.message = 'Register done.';
           this.element = true;
+          this.message = 'Register done.';
+          
         }
       },
-      (error) => {
+      error:(error) => {
         console.log('error from register', error)
-        this.message = 'An error occurred while trying to save the data';
         this.element = true;
-
+        this.message = 'The username or the mobile phone is taken, try another one!';
       }
-    )
+  })
     
   }
 
@@ -91,9 +101,11 @@ export class RegisterComponent {
   }
 
   // ------------------------- Button ---------------------------//
+  /**
+   * On click do the register
+   */
   submit():void {
     this.testRegister();
-
   }
 
 }
