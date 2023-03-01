@@ -1,3 +1,8 @@
+/**
+ * @authors Ani Valle and Andrea Morales
+ * @file    This file manages the session closing confirmation.
+ */
+
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { User } from 'src/app/models/User';
@@ -10,6 +15,7 @@ import { ServerServiceService } from 'src/app/services/server-service.service';
 })
 export class LogoutComponent {
 
+  // Get user from local storage
   user:User = JSON.parse(localStorage.getItem("user") || '{}')
   message!:string;
 

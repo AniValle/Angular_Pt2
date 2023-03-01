@@ -8,13 +8,15 @@ import { User } from 'src/app/models/User';
 })
 export class NavBarComponent {
 
+  //Global variables
   user!:User;
   role!:string;
 
   constructor () {}
 
    /**
-   * Verify if the localstorage is created
+   * Check if "user" is in local storage
+   * To know if you are logged in and manage which options to show
    * @returns boolean true or false
    */  
    loggedIn() {

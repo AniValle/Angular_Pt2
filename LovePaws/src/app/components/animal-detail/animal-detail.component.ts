@@ -1,3 +1,9 @@
+/**
+ * @authors   Ani Valle and Andrea Morales
+ * @file      This component manages the editing of animal data.
+ *            It connects with a service, which makes the connection with the DB
+ */
+
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,13 +19,15 @@ import { User } from 'src/app/models/User';
 })
 export class AnimalDetailComponent implements OnInit {
 
+  // Global variables
   getId!: any;
   message!: string;
   theAnimal!: Animal;
   element = false;
-  user!:User;
-  role!:string;
+  user!: User;
+  role!: string;
 
+  //Constructor
   constructor(public formBuilder: FormBuilder,
     public router: Router,
     private ngZone: NgZone,
@@ -28,6 +36,7 @@ export class AnimalDetailComponent implements OnInit {
 
   }
 
+  // Initialize the update form
   updateForm = new FormGroup({
 
     name: new FormControl('', []),
@@ -38,13 +47,10 @@ export class AnimalDetailComponent implements OnInit {
     neutered: new FormControl('', []),
   });
 
-
-
-
+  /** Assign values to the edit form and a message in case a user reaches this page */
   ngOnInit() {
-    //throw new Error('Method not implemented.');
     this.theAnimal = this.myhttp.a;
-    console.log('Animal should be here!', this.theAnimal);
+    //console.log('Animal should be here!', this.theAnimal);
     this.updateForm.controls['name'].setValue(this.theAnimal.name);
     this.updateForm.controls['specie'].setValue(this.theAnimal.specie);
     this.updateForm.controls['breed'].setValue(this.theAnimal.breed);
@@ -53,13 +59,19 @@ export class AnimalDetailComponent implements OnInit {
     this.updateForm.controls['neutered'].setValue(this.theAnimal.neutered);
     this.user = JSON.parse(localStorage.getItem("user") || '{}');
     this.role = `${this.user.role}`;
-    if (this.role !== 'admin'){
+    // Show message if not admin
+    if (this.role !== 'admin') {
       this.element = true;
       this.message = "You must be admin to access this page ;)";
     }
 
   }
 
+  /** Update Animal of Db 
+   * 1. Get new values from the form
+   * 2. Call the service function and pass the values of the animal to update them
+   * 3. Manage errors
+  */
   updateAnimalDB(): void {
 
     this.myhttp.updateAnimal({
@@ -91,8 +103,8 @@ export class AnimalDetailComponent implements OnInit {
     })
   }
 
+  /** This is just a secondary function that calls the function that updates the animal in the db */
   onUpdate(): any {
-
     this.updateAnimalDB()
 
   }
@@ -101,7 +113,7 @@ export class AnimalDetailComponent implements OnInit {
   /**
    *  This function redirects to the 'resident' page
    */
-  redirects(): void{
+  redirects(): void {
     this.router.navigateByUrl('/residents')
   }
 }

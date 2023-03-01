@@ -14,7 +14,7 @@ export class HomeComponent {
   constructor () {}
 
   /**
-   * Verify if the localstorage is created
+   * Check if local storage is created to show welcome message
    * @returns boolean true or false
    */  
   loggedIn() {

@@ -1,3 +1,9 @@
+/**
+ * @authors Ani Valle and Andrea Morales
+ * @file    This file contains the login management as well as 
+ *          the validation of the user's credentials.
+ */
+
 import { Component } from '@angular/core';
 import { FormGroup, FormControl,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,13 +18,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  
+
+// Global variables
   message!:string;
   user!:User;
-  datos!:string;
   miformlogin:FormGroup; 
   element = false;
 
+  // Constructor
   constructor(public router:Router, private myhttp: ServerServiceService) {
     
     this.message ="";
@@ -29,7 +36,7 @@ export class LoginComponent {
     
     // ------------------- Form Login ---------------------// 
     this.miformlogin= new FormGroup({
- 
+      // Validation
       username: new FormControl('',[
       Validators.required,
       Validators.minLength(6),
@@ -44,8 +51,12 @@ export class LoginComponent {
   }
 
   
-
-  testLogin():void{
+/**
+ * Login
+ * This function calls the function of the service that validates 
+ * the credentials to be able to log in and manages error messages
+ */
+  login():void{
 
     this.myhttp.validateUsers(this.miformlogin.value).subscribe({
       next: (result: User) => {
@@ -55,7 +66,7 @@ export class LoginComponent {
         }else{
           console.log(result);
           this.user=JSON.parse(JSON.stringify(result));
-          
+          // successfulLogin function redirects to '/home'
           this.router.navigate(['/home']);
         }
       }
@@ -63,27 +74,13 @@ export class LoginComponent {
   }
 
 
-  // ---------------------- Redirects -----------------------//
-  /**
-   * successfulLogin function redirects to '/events'
-   */
-  successfulLogin(): void{
-    this.router.navigateByUrl('/residents')
-  }
-  successfulLogin2(): void{
-    this.router.navigateByUrl('/users')
-  }
-
-
   // ------------------------- Button ---------------------------//
+  /** Secondary function.
+   * Call the function to login
+   */
    submit():void{
-      this.testLogin();
-      this.datos= `
-      Datos ingresados,
-      Username:         ${this.miformlogin.value.username}
-      Password:         ${this.miformlogin.value.password}`
-      }
-
+      this.login();
+    }
 
   }
 

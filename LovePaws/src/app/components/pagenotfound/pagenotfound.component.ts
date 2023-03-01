@@ -1,3 +1,9 @@
+/**
+ * @authors Ani Valle and Andrea Morales
+ * @file    In case of searching for a route that does not exist in the webapp,
+ *          it shows this page showing a message
+ */
+
 import { Component } from '@angular/core';
 
 @Component({
